@@ -1,0 +1,64 @@
+<html>
+	<body>
+        <textarea id="myText"></textarea>
+        <input type="button" id="mybutton" value="Rows without 0" />
+        <input type="button" id="mybutton2" value="Max num" />
+        <div class="myResult"></div>
+        <div class="myResult"></div>
+		<style>
+            
+        </style>
+		<script>
+            var newText = document.getElementById("myText");
+            var myButton1 = document.getElementById("mybutton");  
+            var newResult = document.getElementsByClassName("myResult");
+            var myButton2 = document.getElementById("mybutton2");
+            
+            myButton1.onclick = function() {
+                console.log(newText.value.split("\n"));
+                var newArray = newText.value.split("\n");
+                var myAct = newArray.map(function(a) {return a.split(", ")});
+                
+//                var myArr = [];
+//                for(var i=0; i<newArray.length; i++) {
+//                    myArr.push(newArray[i].split(", "))
+//                }
+//                12, 25, 3
+//                2, 0, -15
+//                25, 17, 1
+                
+                var count = 0;
+                for(var i=0; i<myAct.length; i++) {
+                    for(var j=0; j<myAct[i].length; j++) {
+                        if(myAct[i][j]==0) {
+                            count++;
+                            break;
+                        } 
+                    }
+                }
+                newResult[0].innerHTML = myAct.length-count;
+            }
+            myButton2.onclick = function() {
+                var newArray = newText.value.split("\n");
+                var myAct = newArray.map(function(a) {return a.split(", ")});
+                var myArr = [];
+                for(var i=0; i<myAct.length; i++) {
+                    for(var j=0; j<myAct[i].length; j++) {
+                        if(typeof(myArr[myAct[i][j]+"a"])=="undefined") {
+                        myArr[myAct[i][j]+"a"]=1; //an object is formed
+                        } else {
+                            myArr[myAct[i][j]+"a"]++;
+                        }
+                    }
+                }
+                var maxNum = -Infinity;
+                for(var i in myArr) {
+                    if(parseFloat(i)>maxNum && myArr[i]>1) {
+                        maxNum=parseFloat(i);
+                    }
+                }
+                newResult[1].innerHTML = maxNum;
+            }
+        </script>
+	</body>
+</html>
