@@ -1,0 +1,54 @@
+<html>
+	<body>
+        <input type="text" id="newText" placeholder="Enter the numbers" />
+        <input type="button" id="myButton1" value="Add" />
+        <input type="button" id="myButton2" value="Multiply" />
+        <input type="button" id="myButton3" value="Sort" />
+        <div class="myResults"></div>
+        <div class="myResults"></div>
+        <div class="myResults"></div>
+<!--        <div class="myResults"></div>-->
+		<style></style>
+		<script>
+            var myText = document.getElementById("newText");
+            var Button1 = document.getElementById("myButton1");
+            var Button2 = document.getElementById("myButton2");
+            var Button3 = document.getElementById("myButton3");
+            var newResults = document.getElementsByClassName("myResults");
+            
+            Button1.onclick = function() {
+                var myArr = myText.value.split(", ");
+                var sum = 0;
+                for(var i=0; i<myArr.length; i++) {
+                    if(myArr[i]>0) {
+                        sum += parseFloat(myArr[i]);
+                    }
+                }
+                newResults[0].innerHTML = sum;
+            }
+            
+            Button2.onclick = function() {
+                var myArr = myText.value.split(", ");
+                var max = -Infinity;
+                var ind = -1; 
+                var min = Infinity;
+                var ind2 = -1;
+                for(var i=0; i<myArr.length; i++) {
+                    if(Math.abs(parseFloat(myArr[i]))>max) {
+                        max = Math.abs(parseFloat(myArr[i]));
+                        ind = i;
+                    } if(Math.abs(parseFloat(myArr[i]))<min) {
+                        min = Math.abs(parseFloat(myArr[i]));
+                        ind2 = i;
+                    }
+                }
+                newResults[1].innerHTML = myArr.slice(ind, ind2).reduce(function(a, b){return parseFloat(a)*parseFloat(b)});
+            }
+            
+            Button3.onclick = function() {
+                var myArr = myText.value.split(", ");
+                newResults[2].innerHTML = myArr.sort(function(a, b) {return parseFloat(b)-parseFloat(a)}).join(", ");
+            }
+        </script>
+	</body>
+</html>
