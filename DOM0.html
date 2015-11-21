@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<style></style>
+		<script>
+            par = document.createElement("p");
+            document.body.appendChild(par);
+            function ourTimer() {
+                var myDate = new Date();
+                par.innerHTML = '<span style = "color: red">'+myDate.getHours()+"</span>:<span style = 'color: blue'>"+myDate.getMinutes()+"</span>:<span style = 'color: green'>"+myDate.getSeconds()+"</span>";
+            }
+            setInterval(ourTimer, 1000);
+        </script>
+	</body>
+</html>
