@@ -1,0 +1,42 @@
+<html>
+	<body>
+        <canvas id = "canvas1" width= "500px" height ="400px"></canvas>
+        <style>
+            canvas {
+                border: solid black 3px;
+            }
+        </style>
+        <script>
+            var myCanvas1 = document.getElementById("canvas1");
+            var myContent = myCanvas1.getContext("2d");
+////            myContent.beginPath();
+//            myContent.lineWidth="5";
+//            myContent.moveTo(80, 100);
+//            myContent.lineTo(80, 200);
+//            myContent.lineTo(280, 200); 
+//            myContent.lineTo(280, 100);
+//            myContent.lineTo(80, 100);
+//            myContent.strokeStyle="purple";
+//            myContent.fillStyle="red";
+//            myContent.fill();
+//            myContent.lineTo(180, 20);
+//            myContent.lineTo(280, 100);
+//            myContent.stroke();
+//            
+//            
+//            myContent.rect(20,20,150,100);
+//            myContent.stroke();
+//            myContent.fill();
+            
+//            myContent.fillRect(150,150,200,80); 
+//                               
+//            myContent.strokeRect(10,10,100,100);
+//            
+//            myContent.clearRect(160,160,40,40);
+//            
+            myContent.beginPath();
+            myContent.arc(100,75,50,1.5*Math.PI,1/2*Math.PI, true);
+            myContent.stroke();
+        </script>
+	</body>
+</html>
