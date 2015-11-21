@@ -1,0 +1,28 @@
+<html>
+	<body>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        
+		<style>
+            div { width: 100px; height: 100px; border: 1px solid black; position: absolute; }
+        </style>
+		<script>
+            var div = document.getElementsByTagName("div");
+            for(var i = 0; i<div.length; i++){
+            div[i].onmousedown = function(e){
+                this.onmousemove =function(e){
+                    this.style.left = e.clientX -this.scrollWidth/2 +"px";
+                    this.style.top = e.clientY-this.scrollHeight/2+"px";
+                }
+            }
+            div[i].onmouseup = function(e){
+            this.onmousemove = null;
+            }
+        }
+        </script>
+	</body>
+</html>
