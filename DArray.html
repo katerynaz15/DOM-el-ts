@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<style></style>
+		<script>
+            var newArr = ["name", 123, "Zhytomyr", 2, "my", 1000000000];
+            var newStr = "";
+            console.log(typeof(newArr[0]));
+            for(var i=0; i<newArr.length; i++) {
+                if(typeof(newArr[i])=="string" && newArr[i].length>newStr.length) {
+                    newStr = newArr[i];
+                } //else {
+//                    console.log(newArr[i]);
+//                }
+            }
+            console.log(newStr);
+        </script>
+	</body>
+</html>
