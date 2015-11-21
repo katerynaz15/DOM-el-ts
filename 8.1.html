@@ -1,0 +1,69 @@
+<html>
+	<body>
+         <input type="text" id="myText" placeholder="enter the numbers" />
+         <input type="button" id="myButton1" value="Min Num Ind" />
+         <input type="button" id="myButton2" value="Sum" />
+         <input type="button" id="myButton3" value="Sort" />
+         <div></div>
+         <div></div>
+         <div></div>
+		<style>
+           
+        </style>
+		<script>
+            var newText = document.getElementById("myText");
+            var button1 = document.getElementById("myButton1");
+            var button2 = document.getElementById("myButton2");
+            var button3 = document.getElementById("myButton3");
+            var divBlock = document.getElementsByTagName("div");
+            
+            button1.onclick = function() {
+                var newData = newText.value.split(", ");
+                var minNum = Infinity;
+                var ind = -1;
+                for(var i=0; i<newData.length; i++) {
+                    if(isNaN(parseInt(newData[i]))) {
+                        alert("Please enter valid numbers!");
+                        return;
+                    } if(parseInt(newData[i])<minNum) {
+                        minNum = parseInt(newData[i]);
+                        ind = i;
+                    }
+                }
+                divBlock[0].innerHTML = ind;
+            }
+            
+            button2.onclick = function() {
+                var newData = newText.value.split(", ");
+                var key = false;
+                var sum = 0;
+                for(var i=0; i<newData.length; i++) {
+                    if(parseInt(newData[i])<0 && key==false) {
+                        key = true;
+                        continue;
+                    } if(parseInt(newData[i])<0 && key==true) {
+                        key = false;
+                        break;
+                    } if (key) {
+                        sum += parseInt(newData[i]);
+                    }
+                }
+                divBlock[1].innerHTML = sum;
+            }
+            
+            button3.onclick = function() {
+                var newArr = [];
+                var newData = newText.value.split(", ");
+                for(var i=0; i<newData.length; i++) {
+                    if(Math.abs(parseInt(newData[i]))<10) {
+                        newArr.push(parseInt(newData[i]));
+                        newData.splice(i, 1);
+                        i--;
+                    }
+                }
+                var myArr = newArr.concat(newData);
+                divBlock[2].innerHTML = myArr.join(", ");
+            }
+        </script>
+	</body>
+</html>
