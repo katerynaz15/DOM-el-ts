@@ -1,0 +1,72 @@
+<html>
+	<body>
+        <div id="mainDiv">
+            <p>Hello World!</p>
+            
+            <h2>Hello again!</h2>
+            <h2>Hello again!</h2>
+            <h2>Hello again!</h2>
+            
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            
+            <table>
+                <tr>
+                    <td><input type="button" class="number" value="1" /></td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>+</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td rowspan="2">=</td>
+                </tr>
+                 <tr>
+                    <td colspan="2">0</td>
+                    <td>.</td>
+                </tr>
+            </table>
+        </div>
+		<style></style>
+		<script>
+            var mainDivBlock = document.getElementById("mainDiv");
+            var newArray = [];
+            var myVariable = mainDivBlock.firstChild;
+            
+            while(myVariable!==null) {
+                if(myVariable.nodeType==1) {
+                    if(typeof(newArray[myVariable.nodeName])=="undefined") {
+                        newArray[myVariable.nodeName]=1;
+                    } else {
+                        newArray[myVariable.nodeName]++;
+                    }
+                }
+                myVariable = myVariable.nextSibling;
+            }
+            //console.log(newArray);
+            var countedElements = document.createElement("div");
+            mainDivBlock.appendChild(countedElements);
+            var emptyString = "";
+            for(var i in newArray) {
+                emptyString += i+":"+newArray[i]+"<br />";
+            }
+            countedElements.innerHTML = emptyString;
+                
+//                var newArray = {
+//                    "key1": "value1",                could say that it is index[0]
+//                    "key2": "value2",                and this is index[1]
+//                }
+                
+        </script>
+	</body>
+</html>
