@@ -1,0 +1,38 @@
+<html>
+	<body>
+        <form>
+            <input type="number" id="number1" required />
+             <input type="number" id="number2" required />
+             <input type="submit" id="myButton" />
+        </form>
+		<style></style>
+		<script>
+            var num1 = document.getElementById("number1");
+            var num2 = document.getElementById("number2");
+            var newButton = document.getElementById("myButton");
+            
+            newButton.onclick = function() {
+                var res = num1.value/num2.value;
+                if(num1.value % num2.value == 0) {
+                    alert(res);
+                } else {
+                    var numUp = parseInt(num2.value);
+                    var numDown = parseInt(num2.value);
+                    while(true) {
+                        numUp++;
+                        numDown--;
+                        if(num1.value%numUp==0 || num1.value%numDown==0) {
+                            break;
+                        }
+                    }
+    
+                    if(num1.value%numUp==0) {
+                        alert("Please enter "+numUp);
+                    } else {
+                        alert("Please enter "+numDown+" to the second input");
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>
