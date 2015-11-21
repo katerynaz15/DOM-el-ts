@@ -1,0 +1,53 @@
+<html>
+	<body>
+        <textarea id="myText"></textarea>
+        <input type="button" id="mybutton" value="Sort" />
+        <div></div>
+		<style></style>
+		<script>
+//            5, 8, -5, -7
+//           -3, 7, 2, -4
+//            2, 6, 9, 14
+//            0, -1, 10, 8
+//
+//           -3, -1, -5, -7
+            
+            
+            var myText = document.getElementById("myText");
+            var newButton = document.getElementById("mybutton");
+            var divBlock = document.getElementsByTagName("div")[0];
+            
+            newButton.onclick = function() {
+                var newArray = myText.value.split("\n");
+                var myArray = newArray.map(function(a) {return a.split(", ")});
+                
+                var sum = [];
+                var sortedArray = [];
+                for(var i=0; i<myArray.length; i++) {
+                    sum[i] = 0;
+                    sortedArray[i] = [];
+                    for(var j=0; j<myArray[i].length; j++) {
+                        if(parseInt(myArray[j][i])<0 && parseInt(myArray[j][i])%2!==0) {
+                            sum[i] += parseInt(myArray[j][i]);
+                        }
+                    }
+                }
+                while(sum.length>0) {
+                    var minEl = Infinity;
+                    var ind = -1;
+                    for(var i=0; i<sum.length; i++) {
+                        if(sum[i]<minEl) {
+                            minEl = sum[i]
+                            ind = i;
+                        }
+                    }
+                    for(var i=0; i<myArray[ind].length; i++) {
+                        sortedArray[i][ind] = myArray[i][ind];
+                            myArray[i].splice(ind, 1);
+                    } sum.splice(ind, 1);
+                }
+                console.log(sortedArray);
+            }
+        </script>
+	</body>
+</html>
