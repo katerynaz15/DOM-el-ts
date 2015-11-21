@@ -1,0 +1,58 @@
+<html>
+	<body>
+        
+		<style>
+            td {
+                border: solid green 5px;
+                width: 100px;
+                height: 40px;
+            }
+            button {
+                margin: 10px 0px 0px 300px; 
+            }
+        </style>
+        
+		<script>
+            var myTable = document.createElement("table");
+            document.body.appendChild(myTable);
+            var firstLine = ["First/ Middle/ Last", "DOB", "Address"];
+            var tHead = document.createElement("thead");
+            myTable.appendChild(tHead);
+            var myTr = document.createElement("tr");
+            tHead.appendChild(myTr);
+            for(var i=0; i<firstLine.length; i++) {
+                var myTabHeading = document.createElement("th");
+                myTr.appendChild(myTabHeading);
+                myTabHeading.innerHTML = firstLine[i];
+            }
+            
+            var tableData = [["Kateryna Ol Zabashta", "04/15/1988", "CA, USA"], ["Dmitry Perkin", "06/18/87", "CA, USA"], ["Spartacus Businkin Green", "01/10/15", "CA, USA"], ["", "07/27/61", "Zhytomyr, Ukraine"], ["", "07/19/52", ""]];
+            for(var i=0; i<tableData.length; i++) {
+                var myTr2 = document.createElement("tr");
+                myTable.appendChild(myTr2);
+                for(var j=0; j<tableData[i].length; j++) {
+                    var myTd = document.createElement("td");
+                    myTr2.appendChild(myTd);
+                    myTd.innerHTML = tableData[i][j];
+                }
+            }
+            
+            var newButton = document.createElement("button");
+            document.body.appendChild(newButton);
+            newButton.innerHTML = "Submit";
+            newButton.onclick = function() {
+                for(var i=0; i<tableData.length; i++) {
+                    for(var j=0; j<tableData[i].length; j++) {
+                        if(tableData[i][j]=="") {
+                            myTable.rows[i+1].cells[j].style.borderColor = "red";
+                            console.log(false);
+                        } else if(tableData[i][0].split(" ").length!==3) {
+                            myTable.rows[i+1].cells[0].style.borderColor = "red";
+                            console.log(false);
+                        }
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>
