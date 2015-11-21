@@ -1,0 +1,59 @@
+<html>
+	<body>
+        <canvas id="newCanvas" width="400px" height="400px"> 
+        </canvas>
+        <style>
+            canvas{
+                border: green 3px solid;
+            }
+        </style>
+        <script>
+            var newCanvas = document.getElementById("newCanvas");
+            var myContent = newCanvas.getContext("2d");
+            myContent.translate(200, 200);
+            var clockImage = new Image();
+            clockImage.src = "../images/Clock_Face.png";
+            clockImage.onload = function() {
+                myContent.drawImage(clockImage,-100,-100,200,200);
+                //context.rotate( degreesToRadians(0 * 6));
+//                myContent.save();
+//                
+//                myContent.rotate(90);
+//                myContent.moveTo(200, 200);
+//                myContent.lineTo(200, 140);
+//                myContent.stroke();
+//                var newDate = new Date();
+//                myContent.restore();
+                myContent.save();
+                myContent.rotate( degreesToRadians(0 * 6));
+                drawHand(60, "red");
+                myContent.restore();
+                
+                myContent.save();
+                myContent.rotate( degreesToRadians(15 * 6));
+                drawHand(45, "green");
+                myContent.restore();
+                
+                myContent.save();
+                myContent.strokeStyle = 'green';
+                myContent.rotate( degreesToRadians(30 * 6));
+                drawHand(53, "blue");
+                myContent.restore();
+                }
+                function degreesToRadians(degrees) {
+                    return (Math.PI / 180) * degrees;
+                }
+                function drawHand(size, color){
+                    myContent.strokeStyle = color;
+                 //context.beginPath();
+                    myContent.moveTo(0,0); // center
+                     // context.lineTo(-4, -10);
+                    myContent.lineTo(0, -size );
+                     // context.lineTo(4,-10);
+                      //context.lineTo(0,0);
+                      //context.fill();
+                    myContent.stroke();
+            }
+        </script>
+	</body>
+</html>
