@@ -1,0 +1,80 @@
+var newArr = function(arr) {
+	var count = arr.filter(function(el) {return el==0;});
+    console.log(arr, count.length);
+}
+newArr([-3, 0, 0, 12, 16, -21]);
+
+
+
+var newArr1 = function(arr) {
+    //if(arr.filter(function(el) {return el==0}).length!==0) {
+    //if(arr.some(function(el) {return el==0})) {
+    if(arr.indexOf(0)!==-1) {
+    	console.log("Your array has 0");
+    } else {
+        var min = Math.min(...arr);
+        var myArr = arr.map(function(el) {return el-min});
+        console.log(myArr);
+      }
+}
+newArr1([3, 10, 30, 12, 16, 21]);
+
+
+
+var newArr3 = function(arr) {
+    if(arr.every(function(el) {return el==0})) {
+    	console.log("There is nothing but zeros in your array");
+    } else {
+    	var myArr = arr.reduce(function(a, b) {return a+b});
+        console.log(myArr);
+    }
+}
+newArr3([3, 10, 30, 12, 16, 21]);
+
+
+//splice = cuts a part and returns to a new arr, takes the first initial index and the number of el'ts that need to be deleted. 
+//slice = copies a part of the initial array, returns in a new variable, takes the initial index (included) and index of the el-t it cut till.
+
+
+var newArr4 = function(arr) {
+    var myArr = arr.slice(arr.indexOf(0)+1, arr.lastIndexOf(0));
+    var myArr2 = myArr.reduce(function(a, b) {return a*b});
+    console.log(myArr2);
+}
+newArr4([3, 0, 10, 30, 12, 0, 16, 21]);
+
+
+
+var newArr5 = function(arr) {
+    var newNum = arr.filter(function(el) {return el>0});
+    var newNum2 = newNum.map(function(el) {return Math.pow(el, 5)});
+    var sum = newNum2.reduce(function(a, b) {return a+b});
+    console.log(sum);
+}
+newArr5([3, -10, -12, 0, 6, -21]);
+
+
+
+var newArr6 = function(arr) {
+    //var negativeSum = arr.filter(function(el) {return el<0}).reduce(function(a, b) {return a+b});
+    if(arr.every(function(el) {return el<0})) {
+    	var sum = arr.reduce(function(a, b) {return a+b});
+    } 
+    if(arr.every(function(el) {return el>0})) {
+        var mlt = arr.filter(function(el) {return el%2==0}).reduce(function(a, b) {return a*b});
+    }
+    else {
+    	var negativeSum = arr.filter(function(el) {return el<0}).map(function(el) {return Math.abs(el)}).reduce(function(a, b) {return a*b});
+    }
+    console.log(sum, mlt, negativeSum);
+}
+newArr6([-3, -10, 12, -6, 21]);
+
+
+
+var newArr7 = function(arr) {
+    var newArr = arr.splice(arr.indexOf(0)+1, arr.lastIndexOf(0)-arr.indexOf(0)-1);
+    var myArr = arr.concat(newArr);
+    console.log(myArr);
+}
+newArr7([-3, -10, 0, 12, -6, 0, 21, 31, 256]);
