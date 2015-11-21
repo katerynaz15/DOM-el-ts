@@ -1,0 +1,44 @@
+<html>
+	<body>
+		<style>
+			table {
+				float: left;
+			}
+		</style>
+		<script>
+		var chessBoard = function(fcolor, scolor, content) {
+			var myTable = document.createElement("table");
+			document.body.appendChild(myTable);
+				if(typeof(content)=="undefined") {
+					var rows = 5;
+					var columns = 5;
+					var key = false;
+				} else {
+					var rows = content.length;
+					var columns = content.length;
+					var key = true;
+				}
+			for(var i=0; i<rows; i++) {
+				var myTr = document.createElement("tr");
+				myTable.appendChild(myTr);
+				for(var j=0; j<columns; j++) {
+					var myTd = document.createElement("td");
+					myTr.appendChild(myTd);
+					myTd.style.height = "25px";
+					myTd.style.width = "25px";
+					if(key) {
+						myTd.innerHTML = content[i][j];
+					}
+					if((i+j)%2 == 0) {
+						myTd.style.backgroundColor = fcolor;
+					} else {
+						myTd.style.backgroundColor = scolor;
+					}
+				}
+			}
+		}
+		chessBoard("black", "white");
+		chessBoard("yellow", "red", [[2, 7, "USA"], ["Katya", "Dima", 8], [true, false, "Ukraine"]]);
+		</script>
+	</body>
+</html>
