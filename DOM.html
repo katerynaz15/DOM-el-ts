@@ -1,0 +1,53 @@
+<html>
+	<body>
+		<style></style>
+		<script>
+
+var h = document.createElement("div");
+document.body.appendChild(h);
+h.style.backgroundColor = "red";
+h.style.width = "300px";
+h.style.height = "250px";
+
+var j = document.createElement("p");
+h.appendChild(j);
+j.innerHTML = "Hello World!";
+j.style.color = "black";
+j.style.fontSize = "20px";
+j.style.textAlign = "center";
+
+var key = true; 
+h.onclick = function(){
+    if(key) {
+        j.innerHTML = "My Space";
+        j.style.color = "green";
+        key = false; 
+    } else { 
+        key = true;
+        j.innerHTML = "Hello World!";
+        j.style.color = "black";
+    }
+};
+
+var k = document.createElement("table");
+h.appendChild(k);
+var count = 1;
+    for(var i=0; i<5; i++) {
+        var l = document.createElement("tr");
+        k.appendChild(l);
+        for(var j=0; j<5; j++) {
+            var f = document.createElement("td");
+            l.appendChild(f);
+            
+            f.innerHTML = count++;
+            var randNum = Math.floor(Math.random()*100);
+            if(randNum%2 ==0 && randNum<30) {
+                f.style.background = "yellow";
+                f.innerHTML = randNum;
+            }
+    };
+};
+
+</script>
+	</body>
+</html>
