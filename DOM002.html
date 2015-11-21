@@ -1,0 +1,84 @@
+<html>
+	<body>
+        
+		<style></style>
+		<script>
+            window.onload = function() {
+            var myTable = document.createElement("table");
+            document.body.insertBefore(myTable, myButton);
+            
+            var myCaption = document.createElement("caption");
+            myTable.appendChild(myCaption);
+            myCaption.innerHTML = "Summary of the expenditure and income";
+            
+            var myThead = document.createElement("thead");
+            myTable.appendChild(myThead);
+            
+            var myTr = document.createElement("tr");
+            myThead.appendChild(myTr);
+            
+            var myTh1 = document.createElement("th");
+            myTr.appendChild(myTh1);
+            myTh1.innerHTML = "Date";
+            
+            var myTh2 = document.createElement("th");
+            myTr.appendChild(myTh2);
+            myTh2.innerHTML = "E / I";
+            
+            var myTh3 = document.createElement("th");
+            myTr.appendChild(myTh3);
+            myTh3.innerHTML = "Money 1";
+            
+            var myTh4 = document.createElement("th");
+            myTr.appendChild(myTh4);
+            myTh4.innerHTML = "Money 2";
+            
+            var opData = [["10/12/2009", "E", 2000, 17000],
+                          ["11/12/2009", "E", 2000, 15000],
+                          ["11/12/2009", "E", 2000, 13000], 
+                          ["15/12/2009", "I", 60000, 73000],
+                          ["17/12/2009", "E", 2000, 71000]];
+            
+            for(var i=0; i<opData.length; i++) {
+                var thisTr = document.createElement("tr");
+                myTable.appendChild(thisTr);
+                    for(var j=0; j<opData[i].length; j++) {
+                        var thisTd = document.createElement("td");
+                        thisTr.appendChild(thisTd);
+                        thisTd.innerHTML = opData[i][j];
+                    }
+                }
+            myButton.onclick = function() {
+                var resultRow = document.createElement("tr");
+                myTable.appendChild(resultRow);
+                var myI = 0;
+                var myE = 0;
+                for(var i=0; i<opData.length; i++) {
+                    if(opData[i][1]=="E") {
+                        myE += opData[i][3] - opData[i][2];
+                    } else {
+                        myI += opData[i][2] + opData[i][3];
+                    }
+                }
+                var newDate = new Date();
+                
+                var myTd1 = document.createElement("td");
+                resultRow.appendChild(myTd1);
+                myTd1.setAttribute("colspan", "2");
+                myTd1.innerHTML = newDate.getFullYear()+"/"+newDate.getMonth()+"/"+newDate.getDate();
+                
+                var myTd2 = document.createElement("td");
+                resultRow.appendChild(myTd2);
+                myTd2.innerHTML = myE;
+                
+                var myTd3 = document.createElement("td");
+                resultRow.appendChild(myTd3);
+                myTd3.innerHTML = myI;
+                resultRow.style.fontWeight = "bold";
+            }
+            }
+
+        </script>
+        <input type="button" id="myButton" value="Check">
+	</body>
+</html>
