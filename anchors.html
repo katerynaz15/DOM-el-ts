@@ -1,0 +1,46 @@
+<html>
+	<body>
+         <a href="#myDiv6">Bottom</a>
+        <div id="myDiv1">
+            <div id="myDiv2">1</div>
+            <div id="myDiv3">2</div>
+            <div id="myDiv4">3</div>
+            <div id="myDiv5">4</div>
+            <div id="myDiv6">5</div>
+            <div id="myDiv7">6</div>
+            <div id="myDiv7">7</div>
+            <div id="myDiv7">8</div>
+            <div id="myDiv7">9</div>
+            <div id="myDiv7">10</div>
+            <div id="myDiv7">11</div>
+        </div>
+        <a href="#myDiv1">Top</a>
+		<style>
+           #myDiv1 div {
+            height: 200px;
+            background-color: aqua;
+            margin-bottom: 10px;
+           }
+        </style>
+		<script>
+            window.onload = function() {
+                var myDiv = document.getElementById("myDiv6");
+                var myDivPosition = myDiv.offsetTop;
+//                console.log(document.body.scrollTop);
+                var myInterval = setInterval(function() {
+                    document.body.scrollTop+=20;
+                    if(document.body.scrollTop>= myDivPosition-35) {
+                        clearInterval(myInterval);
+                        var newInterval = setInterval(function() {
+                            document.body.scrollTop+=1;
+                            if(document.body.scrollTop>= myDivPosition) {
+                                clearInterval(newInterval);
+                        
+                            }
+                        }, 10);
+                    }
+                }, 50);
+            }
+        </script>
+	</body>
+</html>
