@@ -1,0 +1,72 @@
+<html>
+	<body>
+        <canvas id="myCanvas" width="300px" height="200px"></canvas>
+		<style>
+            body {
+                position: relative;
+            }
+            #myCanvas {
+                position: absolute;
+                top: 20px;
+                right: 10%;
+            }
+        </style>
+		<script>
+            window.onload = function() {
+                var newCanvas = document.getElementById("myCanvas");
+                var newContext = newCanvas.getContext("2d");
+                    var dayTime = function() {
+                        newContext.clearRect(0, 0, newCanvas.width, newCanvas.height);
+                        newContext.beginPath();
+                        newContext.arc(100, 100, 50, 0, 2*Math.PI);
+                        newContext.fillStyle = "yellow";
+                        newContext.fill();
+                        newContext.closePath();
+                        newContext.beginPath();
+                        newContext.moveTo(100, 0);
+                        newContext.lineWidth = 3;
+                        newContext.lineTo(100, 50);
+                        newContext.moveTo(150, 100);
+                        newContext.lineTo(200, 100);
+                        newContext.moveTo(135, 65);
+                        newContext.lineTo(200, 15);
+                        newContext.moveTo(100, 150);
+                        newContext.lineTo(100, 200);
+                        newContext.moveTo(135, 135);
+                        newContext.lineTo(200, 200);
+                        newContext.moveTo(50, 100);
+                        newContext.lineTo(5, 100);
+                        newContext.moveTo(75, 75);
+                        newContext.lineTo(0, 0);
+                        newContext.moveTo(65, 130);
+                        newContext.lineTo(0, 200);
+                        newContext.strokeStyle = "yellow";
+                        newContext.stroke();
+                    }
+//                    dayTime();
+                    var nightTime = function() {
+                        newContext.clearRect(0, 0, newCanvas.width, newCanvas.height);
+                        var moonGradient = newContext.createRadialGradient(70, 80, 10, 50, 100, 50);
+                        moonGradient.addColorStop(0.3, "#ffffff");
+                        moonGradient.addColorStop(0.9, "#ffff66");
+                        newContext.fillStyle = moonGradient;
+                        newContext.beginPath();
+                        newContext.arc(100, 100, 50, 0, Math.PI*2);
+                        newContext.fill();
+                        newContext.closePath();
+                    }
+//                    nightTime();
+                    var timeFunction = function() {
+                        var myDate = new Date();
+                        var myHours = myDate.getHours();
+                        if(myHours>6 && myHours<21) {
+                            dayTime();
+                        } else {
+                            nightTime();
+                        }
+                    }
+                    var checkedTime = setInterval(timeFunction, 1000);
+            }
+        </script>
+	</body>
+</html>
