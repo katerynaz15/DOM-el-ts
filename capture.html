@@ -1,0 +1,68 @@
+<html>
+	<body>
+        <p></p>
+        <input type="button" id="toRefresh" value="Refresh" />
+        <input type="text" id="enteredNumbers" />
+        <input type="button" id="toCheck" value="Check!" />
+        <div id="setTime"></div>
+		<style></style>
+		<script>
+            var captureRes = mainFunction();
+            
+            var myP = document.getElementsByTagName("p")[0];
+            myP.innerHTML = captureRes;
+            var refreshButton = document.getElementById("toRefresh");
+            var enteredText = document.getElementById("enteredNumbers");
+            var checkButton = document.getElementById("toCheck");
+            var setTimer = document.getElementById("setTime");
+            
+            function mainFunction() {
+                var randomQuantity = Math.floor(Math.random()*(6-4)+4);
+                var newStr = "";
+                var selectedData = [{"min":48, "max":57}, {"min":65, "max":90}, {"min":97, "max":122}, {"min":1040, "max":1071}, {"min":1072, "max":1103}];
+                for(var i=0; i<randomQuantity; i++) {
+                    var selectedIndex = Math.floor(Math.random()*selectedData.length);
+                    var selectedCode = Math.floor(Math.random()*(selectedData[selectedIndex].max - selectedData[selectedIndex].min)+selectedData[selectedIndex].min);
+                    newStr+=String.fromCharCode(selectedCode);
+                }
+                return newStr;
+            }
+            refreshButton.onclick = function() {
+                captureRes = mainFunction();
+                myP.innerHTML = captureRes;
+            }
+            
+            var count = 0;
+            checkButton.onclick = function() {
+                if(captureRes==enteredText.value) {
+                    //alert("The task is completed.");
+                } else {
+                    enteredText.style.border = "solid 3px green";
+                    captureRes = mainFunction();
+                    myP.innerHTML = captureRes;
+                    //alert("Enter your data again!");
+                }
+                if(captureRes!==enteredText.value) {
+                    count++;
+                }
+                if(count==3) {
+                    checkButton.style.display = "none";
+                    var timer = 10;
+                    var myTime = setInterval(function() {
+                        timer--;
+                        setTimer.innerHTML = timer;
+                    },1000)
+                    var newTimer = setTimeout(function() {
+                        count = 0;
+                        clearInterval(myTime);
+                        setTimer.innerHTML = "";
+                        checkButton.style.display = "block";
+                    }, 10000);
+                }
+                console.log(count);
+            }
+            
+            console.log(myP, refreshButton, enteredText, checkButton);
+        </script>
+	</body>
+</html>
