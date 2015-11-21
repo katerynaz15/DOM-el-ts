@@ -1,0 +1,29 @@
+<html>
+<body>
+    <style>
+    div {
+        position:absolute; 
+        width:10px; 
+        height:10px; 
+        background:#ccf
+    }
+    </style>
+    <script>
+    function s(n){
+        var l = 0;
+        var t = 0;
+        for(var i = 0; i < n; i++){
+            var div = document.createElement("div");
+            document.body.appendChild(div);
+            l += 10;
+            t = Math.floor(Math.sin(i)*10);
+            console.log(l, t)
+            div.style.left = l+"px"
+            div.style.top = 50+t+"px"
+        }
+    }
+    s(100);
+
+    </script>
+</body>
+</html>
