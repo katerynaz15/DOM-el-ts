@@ -1,0 +1,32 @@
+<html>
+	<body>
+        <textarea id="myText"></textarea>
+        <input type="button" id="mybutton" value="Columns without 0" />
+        <div class="myResult"></div>
+		<style>
+            
+        </style>
+		<script>
+            var newText = document.getElementById("myText");
+            var myButton1 = document.getElementById("mybutton");  
+            var newResult = document.getElementsByClassName("myResult");
+            
+            myButton1.onclick = function() {
+                var newArray = newText.value.split("\n");
+                var myAct = newArray.map(function(a) {return a.split(", ")});
+                var count = 0;
+                console.log(myAct);
+                for(var i=0; i<myAct.length; i++) {
+                    for(var j=0; j<myAct[i].length; j++) {
+                        if(myAct[j][i]==0) {
+                            count++;
+                            break;
+                        }
+                    }
+                }
+                newResult[0].innerHTML = myAct.length-count;
+            }
+            
+        </script>
+	</body>
+</html>
