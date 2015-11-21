@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    </head>
+	<body>
+         <input type="text" id="myText" placeholder="enter the numbers" />
+         <input type="button" id="myButton1" value="Multiply" />
+         <input type="button" id="myButton2" value="Sum" />
+         <input type="button" id="myButton2" value="Sort" />
+         <div></div>
+         <div></div>
+         <div></div>
+		<style>
+           
+        </style>
+		<script>
+            jQuery(document).ready(function() {
+//                $("button:eq(0)")
+//                $("button").eq(0)
+                $("#myButton1").on("click", function() {
+                    var myArr = $("#myText").val().split(", ");
+                    var mlt = 1;
+                    for(var i=0; i<myArr.length; i+=2) {
+                        mlt *= myArr[i];
+                    }
+                    $("div:eq(0)").text(mlt);
+                    $("div:eq(0)").css({"margin": "4px",
+                                       "color": "blue"});
+                })
+                
+                $("#myButton2").on("click", function() {
+                    var myArr = $("#myText").val().split(", ");
+//                    var sum = 0;
+//                    for(var i=myArr.indexOf("0"); i<myArr.lastIndexOf("0"); i++) {
+//                        sum += parseInt(myArr[i]);
+//                    }
+                    
+                    console.log(myArr.slice(myArr.indexOf("0"), myArr.lastIndexOf("0")));
+                    var sum = myArr.slice(myArr.indexOf("0"), myArr.lastIndexOf("0")).reduce(function(a,b){return parseInt(a)+parseInt(b);});
+                    $("div:eq(1)").text(sum);
+                });
+            });
+        </script>
+	</body>
+</html>
