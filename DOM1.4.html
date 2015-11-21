@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<style>
+            p {
+                font-size: 20px;
+                color: black;
+                text-align: center;
+            }
+        </style>
+		<script>
+            var addToElement = function(el, clas, str) {
+                var div1 = document.createElement(el); // create a tag
+                document.body.appendChild(div1);
+                div1.setAttribute("class", clas);
+                div1.innerHTML = str;
+            }
+            addToElement("p", "red", "Hello World!");
+        </script>
+	</body>
+</html>
