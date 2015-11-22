@@ -1,0 +1,68 @@
+<html>
+	<body>
+        <div id="div1">
+            <input type="checkbox" id="check1" /><lable for="check1">1</lable>
+            <input type="checkbox" id="check2" /><lable for="check2">2</lable>
+            <input type="checkbox" id="check3" /><lable for="check3">3</lable>
+            <input type="checkbox" id="check4" /><lable for="check4">4</lable>
+            <input type="checkbox" id="check5" /><lable for="check5">5</lable>
+            <button id="myButton" class="true">Add</button>
+        </div>
+        <table id="newTable"></table>
+		<style></style>
+		<script>
+            window.onload = function() {
+                var newDiv = document.getElementById("div1");
+                var allChecks = newDiv.getElementsByTagName("input");
+                var myButton = document.getElementById("myButton");
+                var myTable = document.getElementById("newTable");
+                
+                myButton.onclick = function() {
+                    if(myButton.getAttribute("class")=="true") {
+                        myButton.setAttribute("class", "false");
+                        myButton.innerHTML = "Delete";
+                        for(var i=0; i<allChecks.length; i++) {
+                            if(!allChecks[i].checked) {
+                                allChecks[i].click(); 
+                            }
+                        }
+                    } else {
+                        myButton.setAttribute("class", "true");
+                        myButton.innerHTML = "Add";
+                        for(var i=0; i<allChecks.length; i++) {
+                            if(allChecks[i].checked) {
+                                allChecks[i].click(); 
+                            }
+                        }
+                    }
+                }
+                
+                for(var i=0; i<allChecks.length; i++) {
+                    allChecks[i].onclick = function() {
+                        if(this.checked) {
+                            var myTr = document.createElement("tr");
+                            myTable.appendChild(myTr);
+                            var myTd = document.createElement("td");
+                            myTr.appendChild(myTd);
+                            myTd.innerHTML = this.nextElementSibling.innerHTML;
+                            var myTd2 = document.createElement("td");
+                            myTr.appendChild(myTd2);
+                            myTd2.innerHTML = "x";
+                            myTd2.setAttribute("class", this.id);
+                            myTd2.onclick = function() {
+                                var check = document.getElementById(this.getAttribute("class"));
+                                check.checked = false;
+                                myTable.removeChild(this.parentNode);
+                            }
+                        } else {
+                            var check2 = document.getElementsByClassName(this.id)[0];
+                            check2.click();
+//                            document.body.click();
+//                            document.body.onclick();
+                        }
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>
