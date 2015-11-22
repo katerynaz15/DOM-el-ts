@@ -1,0 +1,54 @@
+<html>
+	<body>
+		<style>
+            td, th {
+                border: solid 2px red;
+                border-spacing: 0; 
+            }
+        </style>
+		<script>
+            var myTable = document.createElement("table");
+            document.body.appendChild(myTable);
+            var thisCaption = document.createElement("caption");
+            myTable.appendChild(thisCaption);
+            thisCaption.innerHTML = "Our Marks";
+            
+            var thisThead = document.createElement("thead");
+            myTable.appendChild(thisThead);
+            
+            var thisTr = document.createElement("tr");
+            thisThead.appendChild(thisTr);
+            
+            var thisTh1 = document.createElement("th");
+            thisTr.appendChild(thisTh1);
+            thisTh1.innerHTML = "Date";
+            
+            var thisTh2 = document.createElement("th");
+            thisTr.appendChild(thisTh2);
+            thisTh2.innerHTML = "Mark";
+            
+                var myDate = new Date();
+                var lastMark = [{"day": (new Date("December 25, 2008 13:30:00")).getHours()+":"+ (new Date("December 25, 2008 13:30:00")).getMinutes()+":"+(new Date("December 25, 2008 13:30:00")).getSeconds(), 
+                                 "mark": "5"},
+                                {"day": myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds(),
+                                 "mark": "4"},
+                                {"day": myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds(),
+                                 "mark": "3"},
+                                {"day": myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds(),
+                                 "mark": "5"},
+                                {"day": myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds(),
+                                 "mark": "2"},
+                                {"day": myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds(),
+                                 "mark": "4"}];
+                for(var i=0; i<lastMark.length; i++) {
+                    var myTr = document.createElement("tr");
+                    myTable.appendChild(myTr);
+                    for(var j in lastMark[i]) {
+                        var myTd = document.createElement("td");
+                        myTr.appendChild(myTd);
+                        myTd.innerHTML = lastMark[i][j];
+                    }
+                }
+        </script>
+	</body>
+</html>
