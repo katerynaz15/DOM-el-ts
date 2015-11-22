@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>Country</td>
+				<td>Capital</td>
+				<td>National Language</td>
+			</tr>
+			<tr>
+				<td>Ukraine</td>
+				<td>Kiev</td>
+				<td>Ukrainian</td>
+			</tr>
+			<tr>
+				<td>USA</td>
+				<td>Washington DC</td>
+				<td>English, Spanish</td>
+			</tr>
+		</table>
+
+		<style>
+			td {
+				border: solid blue 5px;
+				color: rgba(180, 15, 47, 0.3);
+			}
+		</style>
+
+		<script>
+
+		</script>
+	</body>
+</html>
+
