@@ -1,0 +1,24 @@
+<html>
+	<body>
+		<style></style>
+		<script>
+            var myTable = document.createElement("table");
+            document.body.appendChild(myTable);
+            for(var i=0; i<5; i++) {
+                var myTr = document.createElement("tr");
+                myTable.appendChild(myTr);
+                for(var j=0; j<5; j++) {
+                    var myTd = document.createElement("td");
+                    myTr.appendChild(myTd);
+                        var color = "rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+")";
+                        myTd.setAttribute("id", color);
+                myTd.onclick = function() {
+                    alert("This color is " + this.innerHTML);
+                }
+                        myTd.style.background = color;
+                        myTd.innerHTML = color;
+                }
+            }
+        </script>
+	</body>
+</html>
