@@ -1,0 +1,51 @@
+<!-- <form>
+	<p>What is your name?</p> 
+	
+	<p><input type="radio" name="myname">Zhenya</p>
+	<p><input type="radio" name="myname">Masha</p>
+	
+	<button id="myAn">Answer</button>
+</form> -->
+<html>
+
+<body>
+<script>
+	var newForm = document.createElement("form");
+	document.body.appendChild(newForm);
+	var par = document.createElement("p");
+	newForm.appendChild(par);
+	par.innerHTML = "What is your name?"
+
+	var myArr = ['Katya', 'Zhenya', 'Spartacus'];
+	for(var i=0; i<myArr.length; i++) {
+	var par1 = document.createElement("p");
+	newForm.appendChild(par1);
+	par1.innerHTML = myArr[i];
+
+	var h = document.createElement("input"); 
+	h.setAttribute("name", "myname");
+	h.setAttribute("type", "radio");
+	par1.insertBefore(h, par1.firstChild);
+}
+
+	var button = document.createElement("button");
+	newForm.appendChild(button);
+	button.innerHTML = "Answer";
+	//button.id = "myAn";
+	button.setAttribute("id", "myAn");
+
+	var changeColor = document.getElementById("myAn");
+	console.log(changeColor, myAn);
+	changeColor.onclick = function() {
+		var p = document.getElementsByTagName("p");
+			for(var i=0; i<p.length; i++) {
+				if(i==0) {
+					p[0].style.color = "red";
+				} else {
+					p[i].style.color = "blue";
+				}
+			} return false;
+	}
+</script>
+</body>
+</html>
