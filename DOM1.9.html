@@ -1,0 +1,26 @@
+<html>
+	<body>
+		<style>
+            p {
+                color: forestgreen;
+            }
+        </style>
+		<script>
+            function showOpacity(str) {
+                var par = document.createElement("p");
+                document.body.appendChild(par);
+                var myOpacity = 1/str.length;
+                //var thisOpacity = 0;
+                for(var i=0; i<str.length; i++) {
+                    var mySpan = document.createElement("span");
+                    par.appendChild(mySpan);
+                    mySpan.innerHTML = str[i];
+                    //thisOpacity += myOpacity;
+                    //mySpan.style.opacity = thisOpacity;
+                    mySpan.style.opacity = myOpacity*i;
+                }
+            }
+            showOpacity("I have a dog. It is a cute french bulldog.");
+        </script>
+	</body>
+</html>
