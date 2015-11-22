@@ -1,0 +1,53 @@
+<html>
+	<body>
+		<style>
+            td {
+                border: solid 2px red;
+                width: 50px;
+                height: 50px;
+            }
+            button {
+                margin: 15px 0 0 0; 
+            }
+        </style>
+		<script>
+            var myTable = document.createElement("table");
+            document.body.appendChild(myTable);
+            var mainLine = ["Last Name", "Name", "Middle Name", "Date of Birth"];
+            var myHead = document.createElement("thead");
+            myTable.appendChild(myHead);
+            var myTr = document.createElement("tr");
+            myHead.appendChild(myTr);
+            for(var i=0; i<mainLine.length; i++) {
+                var myTh = document.createElement("th");
+                myTr.appendChild(myTh);
+                myTh.innerHTML = mainLine[i];
+                console.log(myTh);
+            }
+            
+            var studentData = [["Zabashta", "Katya", "Rose", "1988"], ["Spartacus", "Perkin", "Businkin", "frenchie"], ["Zhenya", "Grishkun", "Aleksandrovich", "1991"], ["Alla", "Grishko", "House", "1957"], ["School", "USA", "Ukraine", "2007"]];
+            for(var i=0; i<studentData.length; i++) {
+                var myTr2 = document.createElement("tr");
+                myTable.appendChild(myTr2);
+                for(var j=0; j<mainLine.length; j++) {
+                    var myTd = document.createElement("td");
+                    myTr2.appendChild(myTd);
+                    myTd.innerHTML = studentData[i][j];
+                }
+            }
+            var myButton = document.createElement("button");
+            document.body.appendChild(myButton);
+            myButton.innerHTML = "Check!";
+            
+            myButton.onclick = function() { 
+                var myDate = new Date().getFullYear();
+                for(var i=0; i<studentData.length; i++) {
+                if(isNaN(parseInt(studentData[i][studentData[i].length-1])) || myDate-6>(studentData[i][studentData[i].length-1]) && (studentData[i][studentData[i].length-1])>myDate-10) {
+                    //name of the table.rows[i].cells[j]
+                    myTable.rows[i+1].style.backgroundColor = "yellow"; 
+                }
+            }
+            }
+        </script>
+	</body>
+</html>
