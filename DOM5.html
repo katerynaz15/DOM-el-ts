@@ -1,0 +1,41 @@
+<body>
+<script>
+	var myArr = [["Names", "Weight", "Spicies"], ["Spartacus", "15lb", "Dog"], ["Rexa", "50kg", "Dog"]];
+	var myTable = document.createElement("table");
+	document.body.appendChild(myTable);
+	for(var i=0; i<myArr.length; i++) {
+	var myTr = document.createElement("tr");
+	myTable.appendChild(myTr);
+		for(var j=0; j<myArr[i].length; j++) {
+			var myTd = document.createElement("td");
+			myTr.appendChild(myTd);
+			myTd.innerHTML = myArr[i][j];
+			myTd.style.border = "dotted 3px yellow";
+			myTd.style.borderSpacing = "0";
+			myTd.style.height = "50px";
+			myTd.style.width = "50px";
+		}
+}
+	myTable.style.fontFamily = "Tahoma";
+	myTable.style.fontSize = "10pt";
+
+	myTable.rows[0].style.fontSize = "14pt";
+	myTable.rows[0].style.fontStyle = "italic";
+	myTable.rows[0].style.fontWeight = "bold";
+
+	for(var i=0; i<myTable.rows[0].cells.length; i++) {
+		myTable.rows[0].cells[i].style.color = p();
+	}
+
+		function p() {
+    		var green = Math.floor(Math.random()*255);
+    		var red = Math.floor(Math.random()*255);
+    		var blue = Math.floor(Math.random()*255);
+    			return "rgb("+red+","+green+","+blue+")";
+		}
+
+	myTable.style.height = "100px";
+	myTable.style.width = "500px";
+
+</script>
+</body>
