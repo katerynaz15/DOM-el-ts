@@ -1,0 +1,34 @@
+<html>
+	<body>
+		<style></style>
+		<script>
+            var myFunc = function(quantity, min, max) {
+                var myArr = [];
+                for(var i=0; i<quantity; i++) {
+                    myArr[i] = Math.floor(Math.random()*(max-min)+min); 
+                }
+                return myArr;
+            }
+            var product = myFunc(20, 10000, 100000);
+            var productNum = myFunc(20, 0, 100);
+            
+            var myTable = document.createElement("table");
+            document.body.appendChild(myTable);
+            for(var i=0; i<product.length; i++) {
+                var myTr = document.createElement("tr");
+                myTable.appendChild(myTr);
+                for(var j=0; j<2; j++) {
+                    var myTd = document.createElement("td");
+                    myTr.appendChild(myTd);
+                    if(j==0) {
+                        myTd.innerHTML = product[i];
+                    } else {
+                        myTd.innerHTML = productNum[i];
+                    }
+                    myTd.style.border = "solid 3px red";
+                }
+            }
+        </script>
+	</body>
+</html>
+
