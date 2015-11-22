@@ -1,0 +1,19 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<body>
+        <p><span>Существует CSS разметка для элемента в div {position:absolute; width:10px; height:10px; background:#ccf}.</span> Постройте график функции cos (косинуса), использую математические функции объекта Math. <span>В качестве «кисти», используйте вывод элементов div c CSS позиционированием</span>.
+        </p>
+		<style></style>
+		<script>
+            var par = document.getElementsByTagName("p");
+            console.log(par[0]);
+            var mySpan = par[0].getElementsByTagName("span");
+            console.log(mySpan);
+                mySpan[0].style.letterSpacing = "3px";
+                mySpan[1].style.lineHeight = "1px";
+                mySpan[0].style.textTransform = "uppercase";
+                mySpan[1].style.wordSpacing = "10px";
+                par[0].style.background = "rgb(136, 213, 205)";
+        </script>
+	</body>
+</html>
