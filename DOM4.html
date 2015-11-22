@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<!-- <div id="newStuff">
+			<p>Our Lessons!</p>
+		</div> -->
+		<script>
+			var thisDiv = document.createElement("div");
+			thisDiv.setAttribute("id", "newStuff");
+			document.body.appendChild(thisDiv);
+			var myP = document.createElement("p");
+			thisDiv.appendChild(myP);
+			myP.innerHTML = "Our Lessons";
+			thisDiv.style.margin = "50px";
+			thisDiv.style.padding = "20px 0";
+			thisDiv.style.border = "solid green 10px";
+		</script>
+	</body>
+</html>
