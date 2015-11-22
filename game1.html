@@ -1,0 +1,56 @@
+<html>
+	<body>
+		<style></style>
+		<script>
+            var myData = ["x", "0"];
+            var myInd = 0;
+            var squareGame = 0;
+            var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+            
+            var myTable = document.createElement("table");
+            document.body.appendChild(myTable);
+            for(var i=0; i<3; i++) {
+                var myRows = document.createElement("tr");
+                myTable.appendChild(myRows);
+                for(var j=0; j<3; j++) {
+                var myColumns = document.createElement("td");
+                myRows.appendChild(myColumns);
+                    myColumns.style.width = "50px";
+                    myColumns.style.height = "50px";
+                    myColumns.style.border = "solid 2px green"
+                    
+                    myColumns.onclick = function() {
+                        if(this.innerHTML=="") {
+                            this.innerHTML = myData[myInd];
+                            (myInd==0) ? myInd++ : myInd--;
+                             squareGame++;
+                            var newTd = myTable.getElementsByTagName("td");
+                           
+							 console.log(newTd.length,winningCombinations.length )
+                            for(var i=0; i<winningCombinations.length; i++) {
+                                	//console.log(j)
+									 
+                                for(var j=0; j<winningCombinations[i].length; j++) {
+                                   
+                                    if(newTd[winningCombinations[i][j]].innerHTML!==this.innerHTML) {
+                                     
+										break;
+                                    }
+									
+                                }
+								if(j==3) {
+                                    alert(this.innerHTML+"Win");
+                                    return false;
+								 
+                                } 
+							
+								
+                           } if(squareGame==newTd.length) {
+                              alert("Square game!");
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+	</body>
