@@ -1,0 +1,295 @@
+<html>
+	<body>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <div id="map-canvas"></div>
+        <style>
+            * {
+                marging: 0;
+                padding: 0;
+            }
+            body {
+                background: linear-gradient(red 0%, orange 50%, yellow 75%, blue 100%);
+            }
+            h3 {
+                display: inline;
+                marging: 0px;
+                padding: 0px;
+            }
+/*
+            #map-canvas {
+                height: 300px;
+            }
+*/
+            header p {
+                marging: 0px;
+            }
+            #firstColumn, #secondColumn, #thirdColumn {
+                width: 30%;
+                float: left;
+                margin: 5px;
+            }  
+            #firstColumn .mainDish p {
+                display: inline;
+            }
+            #preselectedItems{
+                clear: both;
+            }
+        </style>
+        
+        <header>
+        <h3 id="address">Frontera Grill Restaurants</h3>
+        <p>445 North Clark St. ,  Chicago IL 60610 | (312) 661-1434 </p>
+        </header>
+        
+        <div id="firstColumn">
+            <table>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Frontera Guacamole</td>
+                    <td>Cilantro, lime, green chile, tomato. Just-made tortilla chips</td>
+                    <td>9.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Just Made Tortilla Chips & Two Salsas</td>
+                    <td>Three-chile (cascabel,‏ morita, guajillo) & tomatillo w/ serrano & cilantro</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Apple-Prosciutto Salad</td>
+                    <td>Sweet &‏ tangy nichols farm honey crisp apples, mezcal-laced toasted ancho salsa, crispy la quercia prosciutto, bayless garden greens, pecan wood-smoked walnuts, cincho cheese</td>
+                    <td>8.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Troical Tuna Cocktail</td>
+                    <td>Sashimi-grade hawaiian bigeye tuna, tomatillo guacamole, tropical fruit salsa</td>
+                    <td>14.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Yucatecan Ceviche</td>
+                    <td>Steamed Mexican blue shrimp & calamari, lime, orange, habanero, avocado, jicama, cucumber & cilantro. crispy tortilla chips</td>
+                    <td>13.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Ceviche Trio</td>
+                    <td>Frontera ceviche (albacore, tomato, olive), yucatecan ceviche (shrimp, squid, orange, cucumber), tropical tuna cocktail (big eye, avocado-tomatillo, tropical fruit salsa)</td>
+                    <td>18.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Sopes Rancheros</td>
+                    <td>Crispy corn masa boats filled w/ savory shredded beef, roasted tomato, avocado, homemade fresh cheese</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Pork Shoulder w/ Yucatecan Recado Negro</td>
+                    <td>Pork shoulder, smoked ham hocks & runner beans simmered w/ traditional, inky recado negro (fire-roasted chiles, garlic, spices). Sour cream, radishes, cilantro</td>
+                    <td>10.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Northern Style Quesadillas</td>
+                    <td>Flour tortillas folded over wisconsin jack cheese & one of the following fillings. Black beans & young greens. Duck carnitas w/ grilled red onion, charcoaled chicken w/ guacamole, tender mushrooms (mexican woodland type) w/ roasted poblano peppers grilled shrimp w/ smoky, spicy chipotle peppers</td>
+                    <td>14</td>
+                </tr>
+            </table>
+        </div>
+        <div id="secondColumn">
+            <table>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Smoked Shrimp & Scallop Cocktail</td>
+                    <td>Smoked royal‏ red shrimp, smoked bay scallops, jicama, diced tomatillo, white onion, verde salsa, lime, masa chips</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Scallop Ceviche</td>
+                    <td>Lime & vanilla-cured scallops, grilled pineapple-habanero salsa, knob onion & green acres farm radish.</td>
+                    <td>17</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Ceviche Trio</td>
+                    <td>Frontera ceviche (albacore, tomato, olive), yucatecan ceviche (shrimp, squid, orange, cucumber), tropical tuna cocktail (big eye, avoado-tomatillo, tropical fruit salsa)</td>
+                    <td>19</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Enchiladas Potosinas</td>
+                    <td>Chile-spiked corn-masa turnovers w/ spicy homemade fresh cheese. Pepita-avocado mash, tamazula hot sauce, crema drizzle, arugula salad</td>
+                    <td>8.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Misantla-Style Tamal</td>
+                    <td>Creamy-herby polenta-style tamal topped w/ red chile-sesame tlatonile sauce, poached gunthorp chicken, cincho cheese</td>
+                    <td>8.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Street Food Trio</td>
+                    <td>Two pieces each: potosinas (fresh cheese, avocado, crema, tamazula), molotes (goat, pasilla-garlic salsa, cincho cheese, pea shoots), sopes (shredded beef, roasted tomato, green chile)</td>
+                    <td>19.75</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Classic Queso Fundido</td>
+                    <td>Samuel's artisanal jack cheese, garlicky roasted peppers, homemade chorizo</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Big, Wood-Grilled Tacos Al Carbon Trio</td>
+                    <td>Grassfed skirt steak, gunthorp chicken, pork, roasted poblanos, guacamole, grilled knob onions & local shishito peppers</td>
+                    <td>36</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Spicy Chipotle Mushrooms</td>
+                    <td>Braised w/ sassy veracruz salsa negra, epazote, tracy’s corn, anejo cheese</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Shishito Peppers</td>
+                    <td>Wood-grilled, lime, coarse salt</td>
+                    <td>7</td>
+                </tr>
+                 <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Achiote Rice</td>
+                    <td>Green lentils, fresh sweet corn, epazote</td>
+                    <td>5.5</td>
+                </tr>
+            </table>
+        </div>
+        <div id="thirdColumn">
+            <table>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Caramel Apple</td>
+                    <td>D'Aristi rum, housemade cajeta caramel, JK Scrumpy's hard cider, Mexican chocolate rim</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Cafe Playa</td>
+                    <td>Kahlua, golden Arette anejo tequila, steaming americano (espresso, hot water) whipped cream, dusting of Mexican chocolate</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Chocolate Mezcalero</td>
+                    <td>Del Maguey crema de mezcal in steaming Oaxacan chocolate w/ a dash of cinnamon</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Cafe Tacuba</td>
+                    <td>Arette blanco tequila, Kahlua, fresh-brewed Intelligentsia Black Cat Espresso & half-and-half, shaken over ice tableside</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Flan Sampler</td>
+                    <td>Traditional Mexican vanilla flan & a pudding-like milk chocolate flan. Raw sugar-poached Klug Farm pears, Negra Modelo chocolate sauce, Oaxacan chocolate chunks</td>
+                    <td>8.25</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Press Pot Coffee w/ a Cause</td>
+                    <td>100% organic beans from La Perla de Oaxaca, roasted locally by Intelligentsia. (Abundant creamy Swiss milk chocolate surrounds lemondrop candy acidity w/ a tiny edging of fresh blackberries)</td>
+                    <td>4.75</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Rishi Organic Tea</td>
+                    <td>Emerald Lily‏ Green, Jasmine Pearl, Iron Goddess of Mercy Oolong, Earl Grey, Yunnan Golden Buds Black, Wild Tree Pu-erh, Peppermint Rooibos, Chamomile Medley, Tangerine Ginger</td>
+                    <td>3.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Frothy Mexican Hot Chocolate</td>
+                    <td>Rustic Oaxacan dark-roas chocolate, steamed w/ hot milk</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Chocolate Cappuccino</td>
+                    <td>Intelligentisa Black‏ Cat espresso & Oaxacan chocolate steamed w/ hot milk</td>
+                    <td>5.5</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkmark"></td>
+                    <td>Frontera Blend from Intelligentsia Coffee</td>
+                    <td>Organic Brazilian beans offer a creamy mouth feel & soft acidity, beautifully balanced by dry fruit from Colombian coffee</td>
+                    <td>2.5</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="preselectedItems">
+            <p>Selected Items</p>
+        </div>
+        <input type="button" id="myButton" value="Add money!">
+		<script>
+            var map;
+            var mapCanvas = document.getElementById('map-canvas')
+            function initialize() {
+                map = new google.maps.Map(mapCanvas, {
+                zoom: 6,
+                center: {lat: -34.397, lng: 150.644}
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            var newMap = document.getElementById("address");
+            newMap.onclick = function() {
+                mapCanvas.style.height = "300px";
+                mapCanvas.style.width = "300px";
+            }
+            var preSelectedItems = document.getElementById("preselectedItems");
+            var checkBox = document.getElementsByClassName("checkmark");
+            var thisButton = document.getElementById("myButton");
+            var count = 0; //links checkbox to preselectedItems, then we add id and class;
+            var myMoney = 0;
+            for(var i=0; i<checkBox.length; i++) {
+                checkBox[i].onclick = function() {
+                    var myTr = this.parentNode.parentNode;
+                    var myTd = myTr.getElementsByTagName("td");
+                    if(this.checked) {
+                        this.id = count;
+                        preSelectedItems.innerHTML += '<div class="'+count+'">'+myTd[1].innerHTML+": "+myTd[3].innerHTML+'</div>';
+                        var newColors = preSelectedItems.getElementsByClassName(count)[0];
+                        //console.log(myTr.parentNode.parentNode.parentNode);
+                        switch(myTr.parentNode.parentNode.parentNode.id) {
+                            case"firstColumn": newColors.style.color = "red";
+                                break; 
+                            case"secondColumn": newColors.style.color = "green";
+                                break;
+                            case"thirdColumn": newColors.style.color = "blue";
+                                break;
+                                
+                        }
+                        myMoney += parseFloat(myTd[3].innerHTML);
+                        count++;
+                    } else {
+                        var selectedDiv = preSelectedItems.getElementsByClassName(this.id)[0];
+                        preSelectedItems.removeChild(selectedDiv);
+                        myMoney -= parseFloat(myTd[3].innerHTML);
+                    }
+                }
+            }
+            thisButton.onclick = function() {
+                alert("Your total is "+myMoney);
+            }
+        </script>
+	</body>
+</html>
