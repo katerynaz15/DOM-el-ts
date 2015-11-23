@@ -1,0 +1,24 @@
+<html>
+	<body>
+        <textarea id="myText"></textarea>
+        <input type="button" id="myButton" value="Submit!" />
+		<style></style>
+		<script>
+            var newText = document.getElementById("myText");
+            var newButton = document.getElementById("myButton");
+            newButton.onclick = function() {
+                var sum = 0;
+                var newRes = /\d+/gim;
+                var newArr = [];
+                var res;
+                while((res = newRes.exec(newText.value))!==null) {
+                    newArr.push(res[0]);
+                }
+                for(var i=0; i<newArr.length; i++) {
+                    sum += parseInt(newArr[i]);
+                }
+                alert(sum);
+            }
+        </script>
+	</body>
+</html>
