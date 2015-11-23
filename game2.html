@@ -1,0 +1,125 @@
+<html>
+	<body>
+        <div>
+            <p>Gold: <span id="changedMoney">0</span></p>
+            <p>Power of the kick: <span id="theKick">1</span></p>
+            <input type="button" id="newButton" value="Improve my Kick!">
+        </div>
+        <div id="mainMonster">
+            <figure>
+                <figcaption id="theDescription"></figcaption>
+                <img src="../images/cute-monster.1.jpg" id="newImage" />
+            </figure>
+        </div>
+		<style>
+            body {
+                position: relative;
+            }
+            #mainMonster {
+                position: absolute;
+                top: 75px;
+                left: 0;
+            }
+            img {
+                width: 150px;
+                height: 110px;
+            }
+        </style>
+		<script>
+            window.onload = function() {
+                var newMoney = document.getElementById("changedMoney");
+                var newKick = document.getElementById("theKick");
+                var movingBlock = document.getElementById("mainMonster");
+                var newDescription = document.getElementById("theDescription");
+                var newImage = document.getElementById("newImage");
+                var myButton = document.getElementById("newButton");
+                
+                var gold = 0;
+                var power = 1;
+                var currentHealth;
+                var currentMonster;
+                
+                var allMonsters = [{
+                    name: "Cute1",
+                    gold: 10,
+                    health: 10,
+                    img: "../images/cute-monster.1.jpg",
+                    width: "150px",
+                    height: "110px"
+                },
+                {
+                    name: "Cute2",
+                    gold: 5,
+                    health: 8,
+                    img: "../images/cute_monster2.jpg",
+                    width: "110px",
+                    height: "150px"
+                },
+                {
+                    name: "Cute3",
+                    gold: 15,
+                    health: 10,
+                    img: "../images/cute_monster3.jpg",
+                    width: "110px",
+                    height: "150px"
+                }, 
+                {
+                    name: "Cute4",
+                    gold: 4,
+                    health: 9,
+                    img: "../images/cute_monster4.jpg",
+                    width: "150px",
+                    height: "150px"
+                }, 
+                {
+                    name: "Cute5",
+                    gold: 1,
+                    health: 10,
+                    img: "../images/cute-monster5.jpg",
+                    width: "150px",
+                    height: "150px"
+                }];
+                
+                var myMonster = function() {
+                    currentMonster = Math.floor(Math.random()*allMonsters.length);
+                    movingBlock.style.left = Math.floor(Math.random()*window.innerWidth/2)+"px";
+                    currentHealth = allMonsters[currentMonster].health;
+                    newDescription.innerHTML = allMonsters[currentMonster].name+" "+currentHealth+"/"+allMonsters[currentMonster].health;
+                    newImage.src = allMonsters[currentMonster].img;
+                    newImage.style.width = allMonsters[currentMonster].width;
+                    newImage.style.height = allMonsters[currentMonster].height;
+                    //to increase health - took current health and added to it current health multiplied by power
+                    allMonsters[currentMonster].health+=allMonsters[currentMonster].health*Math.floor(power/5)+1;
+                    
+                    allMonsters[currentMonster].gold+=allMonsters[currentMonster].gold*Math.floor(power/10)+1;
+                }
+                myMonster();
+                
+                newImage.onclick = function() {
+                    currentHealth-=power;
+                    if(currentHealth<1) {
+                        gold+=allMonsters[currentMonster].gold;
+                        newMoney.innerHTML = gold;
+                        myMonster();
+                    } else {
+                        newDescription.innerHTML = allMonsters[currentMonster].name+" "+currentHealth+"/"+allMonsters[currentMonster].health;
+                    }
+                    
+                }
+                
+                var kickMoney = 3;
+                myButton.onclick = function() {
+                    if(gold<kickMoney) {
+                        alert("You don't have enough money! Please come back later:) \n You need extra "+kickMoney);
+                    } else {
+                        gold-=kickMoney;
+                        newMoney.innerHTML = gold;
+                        kickMoney*=power;
+                        power++;
+                        newKick.innerHTML = power;
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>
