@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="jquery-1.11.3.js"></script>
+        <title>simple calculator</title>
+    </head>
+	<body>
+        <table>
+            <tr>
+                <td colspan="4"><input type="text" id="answerField" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" id="mc" value="MC" /></td>
+                <td><input type="button" id="mm" value="M+" /></td>
+                <td><input type="button" id="m-" value="M-" /></td>
+                <td><input type="button" id="mr" value="MR" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" id="c" value="C" /></td>
+                <td><input type="button" id="pm" value="+/-" /></td>
+                <td><input type="button" id="divide" value="/" /></td>
+                <td><input type="button" id="mlt" value="x" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="number" value="7" /></td>
+                <td><input type="button" class="number" value="8" /></td>
+                <td><input type="button" class="number" value="9" /></td>
+                <td><input type="button" id="subtr" value="-" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="number" value="4" /></td>
+                <td><input type="button" class="number" value="5" /></td>
+                <td><input type="button" class="number" value="6" /></td>
+                <td><input type="button" id="add" value="+" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="number" value="1" /></td>
+                <td><input type="button" class="number" value="2" /></td>
+                <td><input type="button" class="number" value="3" /></td>
+                <td rowspan="2"><center><input type="button" id="equal" value="=" /></center></td>
+            </tr>
+            <tr>
+                <td colspan="2"><center><input type="button" class="number" id="zero" value="0" /></center></td>
+                <td><input type="button" id="dot" value="." /></td>
+            </tr>
+
+        </table>
+        
+		<style>
+            input {
+                width: 40px;
+                padding: 10px;
+            }
+            td {
+                padding: 2px;
+                background-color: firebrick;
+                border-radius: 5px;
+                text-align: center;
+            }
+            #zero {
+                width: 88px;
+            }
+            #equal {
+                height: 100px;
+            }
+            #answerField {
+                width: 180px;
+            }
+            
+        </style>
+        
+		<script>
+           // $("td").css({"background":"firebrick"})
+            
+            var storedData = "";
+            var key = false;
+            var switchOperations;
+            var newMemory = 0;
+            
+            var clearButton = document.getElementById("c");
+            var plusMinus= document.getElementById("pm");
+            var answerField = document.getElementById("answerField");
+            var myNumbers = document.getElementsByClassName("number");
+            var mltp = document.getElementById("mlt");
+            var division = document.getElementById("divide");
+            var subtr = document.getElementById("subtr");
+            var addition = document.getElementById("add");
+            var equalSign = document.getElementById("equal");
+            var myDot = document.getElementById("dot");
+            var myMc = document.getElementById("mc");
+            var myMm = document.getElementById("mm");
+            var myMmm = document.getElementById("m-");
+            var myMr = document.getElementById("mr");
+            
+            
+            myMc.onclick = function() {
+                newMemory = 0;
+            }
+            myMm.onclick = function() {
+                newMemory += parseFloat(answerField.value);
+            }
+            myMmm.onclick = function() {
+                newMemory -= answerField.value;
+            }
+            myMr.onclick = function() {
+                answerField.value = newMemory;
+            }
+            clearButton.onclick = function() {
+                if(answerField.value!=="" || storedData!=="") {
+                    storedData = "";
+                    answerField.value = "";
+                    key = false;
+                }
+            }
+            plusMinus.onclick = function() {
+                answerField.value = -parseInt(answerField.value);
+            }
+            
+//            for(var i=0; i<myNumbers.length; i++) {
+//                myNumbers[i].onclick = function() {
+//                    if(key) {
+//                        answerField.value = "";
+//                        key = false;
+//                    }
+//                    answerField.value += this.value;
+//                }
+//            }
+            $(".number").click(function() {
+                console.log("Hello");
+                if(key) {
+                    $("#answerField").val("")
+                    key = false;
+                }
+                    $("#answerField").val($("#answerField").val()+$(this).val());
+                    //answerField.value += this.value;
+            }) 
+            
+            division.onclick = function() {
+                if(switchOperations!=="/" && storedData!=="") {
+                    equalSign.onclick();
+                    switchOperations = "/";
+                } else {
+                    switchOperations = "/";
+                    if(storedData=="") {
+                        storedData = answerField.value;
+                        key = true;
+                        //answerField.value = "";
+                    } else {
+                        answerField.value = storedData / answerField.value;
+                        storedData = answerField.value;
+                        key = true;
+                    }
+                }
+            }  
+            mltp.onclick = function() {
+                if(switchOperations!=="*" && storedData!=="") {
+                    equalSign.onclick();
+                    switchOperations = "*";
+                } else {
+                    switchOperations = "*";
+                    if(storedData=="") {
+                        storedData = answerField.value;
+                        key = true;
+                    } else {
+                        answerField.value = storedData * answerField.value;
+                        storedData = answerField.value;
+                        key = true;
+                    } 
+                }
+            }
+            subtr.onclick = function() {
+                if(switchOperations!=="-" && storedData!=="") {
+                    equalSign.onclick();
+                    switchOperations = "-";
+                } else {
+                    switchOperations = "-";
+                    if(storedData=="") {
+                        storedData = answerField.value;
+                        key = true;
+                    } else {
+                        answerField.value = storedData - answerField.value;
+                        storedData = answerField.value
+                        key = true;
+                    }
+                }
+            }
+            addition.onclick = function() {
+                
+                if(switchOperations!=="+" && storedData!=="") {
+                    equalSign.onclick();
+                    switchOperations = "+";
+                } else {
+                    switchOperations = "+";
+                    if(storedData=="") {
+                        storedData = answerField.value;
+                        key = true;
+                    } else {
+                        answerField.value = parseFloat(storedData) + parseFloat(answerField.value);
+                        storedData = answerField.value;
+                        key = true;
+                    }
+                }
+            }
+            myDot.onclick = function() {
+                if(answerField.value!=="" && answerField.value.indexOf(myDot.value)==-1) {
+                    answerField.value += myDot.value;
+                } 
+            }
+            equalSign.onclick = function() {
+                switch(switchOperations) {
+                    case "/": 
+                        answerField.value = storedData / answerField.value;
+                        storedData = answerField.value;
+                        key = true;
+                            break;
+                    case "*":
+                        answerField.value = storedData * answerField.value;
+                        storedData = answerField.value;
+                        key = true; 
+                            break;
+                    case "-":
+                        answerField.value = storedData - answerField.value;
+                        storedData = answerField.value;
+                        key = true;
+                            break;
+                    case "+":
+                        answerField.value = parseFloat(storedData) + parseFloat(answerField.value);
+                        storedData = answerField.value;
+                        key = true;
+                            break;
+                }
+                switchOperations = "";
+            }
+        </script>
+	</body>
+</html>
