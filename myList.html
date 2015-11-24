@@ -1,0 +1,45 @@
+<html>
+	<body>
+        <ol id="mylist">
+        </ol>
+        <input type="text" id="myText" placeholder="Enter fruits here"/>
+        <input type="button" id="myButton" value="Submit!"/>
+		<style></style>
+		<script>
+            var newFruits = document.getElementById("mylist");
+            var enteredFruits = document.getElementById("myText");
+            var newButton = document.getElementById("myButton");
+            
+            function generalFunction() {
+                var orderedList = document.createElement("li");
+                    newFruits.appendChild(orderedList);
+                    orderedList.innerHTML = enteredFruits.value;
+                    
+                    var deleteButton = document.createElement("input");
+                    orderedList.appendChild(deleteButton);
+                    deleteButton.type = "button";
+                    deleteButton.value = "x";
+                    
+                    deleteButton.onclick = function() {
+                        orderedList.innerHTML = ""; 
+                        //parent.removeChild(Dom)
+                        newFruits.removeChild(orderedList);
+                    }
+                    
+                    enteredFruits.value = "";
+            }
+            
+            newButton.onclick = function() {
+                generalFunction();
+            }
+            
+            enteredFruits.onkeypress = function(e) {
+                if(e.keyCode==13) {
+                    generalFunction();
+                }
+            }
+            
+            
+        </script>
+	</body>
+</html>
