@@ -1,0 +1,16 @@
+<html>
+	<body>
+        <ul id="myList"><ul>
+		<style></style>
+		<script>
+            var myList = document.getElementById("myList");    
+            var theAnswer = prompt("Would you like to create a list?")
+            while(theAnswer) {
+                var myLi = document.createElement("li");
+                myList.appendChild(myLi);
+                myLi.innerHTML = theAnswer;
+                theAnswer = prompt("Would you like to create a list?");
+            }
+        </script>
+	</body>
+</html>
