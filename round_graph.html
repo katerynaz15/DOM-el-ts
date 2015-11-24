@@ -1,0 +1,31 @@
+<html>
+	<body>
+        <canvas id = "canvas1" width= "500px" height ="400px"></canvas>
+        <style>
+            canvas {
+                border: solid black 3px;
+            }
+        </style>
+        <script>
+            var myColors = ["red", "green", "blue"];
+            var myData = [100, 200, 40];
+            var sum = 0;
+            for(var i=0; i<myData.length; i++) {
+                sum += myData[i];
+            }
+            var startPoint = 0;
+            
+            var myCanvas1 = document.getElementById("canvas1");
+            var myContent = myCanvas1.getContext("2d");
+            for(var i=0; i<myData.length; i++) {
+                myContent.fillStyle = myColors[i];
+                myContent.beginPath();
+                myContent.moveTo(100,75);
+                myContent.arc(100,75,50,startPoint,startPoint+(Math.PI*2*(myData[i]/sum)));
+                myContent.fill();
+                startPoint+= Math.PI*2*(myData[i]/sum);
+            }
+            
+        </script>
+	</body>
+</html>
