@@ -1,0 +1,34 @@
+<html>
+	<body>
+<!--
+        <audio autoplay>
+            <source src="name.mp3" type="audio/mpeg" />
+        </audio>
+-->
+        <input type="time" id="timer" />
+        <input type="button" id="myButton" value="Set" />
+		<style></style>
+		<script>
+            var myTime = document.getElementById("timer");
+            var newButton = document.getElementById("myButton");
+            newButton.onclick = function() {
+//                console.log(myTime.value);
+                var settingTime = myTime.value.split(":");
+                var myDate = new Date();
+                var countingMilisec = (settingTime[0]-myDate.getHours())*1000*60*60 + (settingTime[1]-myDate.getMinutes())*1000*60 - myDate.getSeconds()*1000 - myDate.getMilliseconds();
+                console.log(countingMilisec);
+                var myTimeOut = setTimeout(function() {
+                    var myAudio = document.createElement("audio");
+                    document.body.appendChild(myAudio);
+                    myAudio.setAttribute("autoplay", "autoplay");
+                    myAudio.setAttribute("controls", "controls");
+                    
+                    var newSrc = document.createElement("source");
+                    myAudio.appendChild(newSrc);
+                    newSrc.setAttribute("type", "audio/mpeg");
+                    newSrc.setAttribute("src", "pink.mp3");
+                }, countingMilisec);
+            }
+        </script>
+	</body>
+</html>
