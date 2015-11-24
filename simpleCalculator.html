@@ -1,0 +1,58 @@
+<html>
+	<body>
+        <input type="number" id="firstNum" />
+        <select id="signs">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="secondNum" />
+        <p>=</p>
+        <input type="text" id="rightAnswer" readonly />
+        <input type="button" value="Submit" id="myButton" >
+        
+		<style></style>
+        
+		<script>
+            
+        var firstNum1 = document.getElementById("firstNum");
+        var mySigns = document.getElementById("signs");
+        var secondNum = document.getElementById("secondNum");
+        var rightAns = document.getElementById("rightAnswer");
+        var myButton1 = document.getElementById("myButton");
+            
+            myButton1.onclick = function() {
+                if(firstNum1.value=="") {
+                    alert("Please enter your number here!");
+                    firstNum1.style.border = "solid 1px red";
+                    return false;
+                } console.log("Please continue!");
+                
+                if(secondNum.value=="") {
+                    alert("Please enter your number here!");
+                    secondNum.style.border = "solid 1px red";
+                    return false;
+                } 
+                
+                switch (mySigns.value) {
+                    case "+": rightAns.value = parseInt(firstNum1.value) + parseInt(secondNum.value); 
+                        break;
+                    case "-": rightAns.value = parseInt(firstNum1.value) - parseInt(secondNum.value);
+                        break;
+                    case "*": rightAns.value = parseInt(firstNum1.value) * parseInt(secondNum.value);
+                        break;
+                    case "/": 
+                        if(parseInt(secondNum.value)==0) {
+                            alert("The number cannot be devided by zero");
+                        } else {
+                            rightAns.value = parseInt(firstNum1.value) / parseInt(secondNum.value);
+                        }
+                        break;
+                }
+                
+                console.log("Please continue!");
+            }
+        </script>
+	</body>
+</html>
