@@ -1,0 +1,82 @@
+<html>
+	<body>
+        <div id="newBlock">
+            <p>Hello World</p>   
+        </div>
+<!--
+        <button id="first">1</button>
+        <button id="second">2</button>
+        <button id="third">3</button>
+        <button id="fourth">4</button>
+-->
+		<style>
+            #newBlock {
+                background: url("../images/0.jpg");
+                background-repeat: no-repeat;
+                background-position: center center;   
+/*                background-size: cover; */
+                height: 100%;
+                position: relative;
+            }
+            p {
+                position: absolute;
+                top: 50%;
+                left: 47%;
+            }
+            button:nth-of-type(1) {
+                margin-left: 670px;
+                margin-top: 400px;
+            }
+            button {
+                margin-right: 5px;
+            }
+        </style>
+		<script>
+            window.onload = function() {
+                var newDiv = document.getElementById("newBlock");
+                var newP = document.getElementsByTagName("p")[0];
+//                var buttonOne = document.getElementById("first");
+//                var buttonTwo = document.getElementById("second");
+//                var buttonThree = document.getElementById("third");
+//                var buttonFour = document.getElementById("fourth");
+                
+                var picArray = ["../images/0.jpg", "../images/1.jpg", "../images/2.jpg", "../images/3.jpg"];
+                var extraP = ["Hello World", "Good Morning", "Good Evening", "Good Night"];
+                var myIndex=0;
+                
+                var newFunction = function() {
+                        newInterval = setInterval(function() {
+                        myIndex++;
+                        if(picArray.length == myIndex) {
+                            myIndex=0;
+                        }
+                        newDiv.style.backgroundImage = "url("+picArray[myIndex]+")";
+                        newP.innerHTML = extraP[myIndex];
+                    }, 2000) 
+                }
+                
+                newFunction();
+                for(var i=0; i<picArray.length; i++) {
+                    var newButton = document.createElement("button");
+                    newDiv.appendChild(newButton);
+                    newButton.setAttribute("class", i);
+//                    newButton.innerHTML = i;
+                    
+                    newButton.onclick = function() {
+                        myIndex = this.getAttribute("class");
+//                        myIndex = this.innerHTML;
+                        clearInterval(newInterval);
+                        newDiv.style.backgroundImage = "url("+picArray[myIndex]+")";
+                        newP.innerHTML = extraP[myIndex];
+                        newFunction();
+                    }
+                }
+                
+//                buttonOne.onclick = function() {}
+//                buttonTwo.onclick = function() {}
+//                buttonThree.onclick = function() {}
+//                buttonFour.onclick = function() {}
+            }
+        </script>
+	</body>
+</html>
