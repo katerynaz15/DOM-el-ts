@@ -1,0 +1,43 @@
+<html>
+	<body>
+        <canvas id="newCanvas" width="500px" height="300px"></canvas>
+        <form><input type="text" id="myText">
+        <input type="button" id="myButton" value="Submit!">
+        
+        <button id="button1">Ky-Ky!</button>
+        </form>
+        <style>
+            canvas{
+                border: green 3px solid;
+            }
+        </style>
+        <script>
+            var myData = [];
+            var myColor = "green";
+            var myCanvas = document.getElementById("newCanvas");
+            var ctx = myCanvas.getContext("2d");
+            
+            var newButton1 = document.getElementById("myButton");
+            newButton1.onclick = function() {
+                ctx.clearRect(0, 0, 500, 300);
+                var newText = document.getElementById("myText");
+                myData.push(parseInt(newText.value));  
+                var sum = 0;
+                for(var i=0; i<myData.length; i++) {
+                   sum += myData[i];
+                }
+                var myStep = 5; //stands for "x"
+                for(var i=0; i<myData.length; i++) {
+                    ctx.fillStyle = myColor;
+                    ctx.fillRect(myStep, 280, 40, -200*(myData[i]/sum));
+                    myStep += 40+5;
+                }
+                
+            }
+            var newButton2 = document.getElementById("button1");
+            newButton2.onclick = function() {
+                alert("My name is Katya");
+            }
+        </script>
+	</body>
+</html>
