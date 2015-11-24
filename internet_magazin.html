@@ -1,0 +1,180 @@
+<html>
+	<body>
+        <div id="myCart">
+            <p>$<span id="totalCost">0.00</span></p>
+        </div>
+        <div class="main">
+            <div class="firstSubclass">
+                <img src="../images/sham1.jpg" />
+                <h5>Shampoo Johnson's baby</h5>
+                <p>$<span>5.99</span></p>
+            </div>
+            <div class="secondSubclass">
+                <input type="button" class="button1" value="+" />
+                <span>0</span>
+                <input type="button" class="button2" value="-" />
+            </div>
+        </div>
+        <div class="main">
+            <div class="firstSubclass">
+                <img src="../images/sham2.jpg" />
+                <h5>Fructis</h5>
+                <p>$<span>3.99</span></p>
+            </div>
+            <div class="secondSubclass">
+                <input type="button" class="button1" value="+" />
+                <span>0</span>
+                <input type="button" class="button2" value="-" />
+            </div>
+        </div>
+        <div class="main">
+            <div class="firstSubclass">
+                <img src="../images/sham3.jpg" />
+                <h5>Head N Shoulders</h5>
+                <p>$<span>6.99</span></p>
+            </div>
+            <div class="secondSubclass">
+                <input type="button" class="button1" value="+" />
+                <span>0</span>
+                <input type="button" class="button2" value="-" />
+            </div>
+        </div>
+        <div class="main">
+            <div class="firstSubclass">
+                <img src="../images/sham4.jpg" />
+                <h5>Suave</h5>
+                <p>$<span>4.99</span></p>
+            </div>
+            <div class="secondSubclass">
+                <input type="button" class="button1" value="+" />
+                <span>0</span>
+                <input type="button" class="button2" value="-" />
+            </div>
+        </div>
+        <div class="main">
+            <div class="firstSubclass">
+                <img src="../images/sham5.jpg" />
+                <h5>Loreal</h5>
+                <p>$<span>7.50</span></p>
+            </div>
+            <div class="secondSubclass">
+                <input type="button" class="button1" value="+" />
+                <span>0</span>
+                <input type="button" class="button2" value="-" />
+            </div>
+        </div>
+        <div id="myTable"></div>
+		<style>
+            img {
+                width: 150px;
+                height: 150px;
+            }
+            h5 {
+                text-align: center;
+            }
+            p {
+                font-weight: bold;
+                text-align: center;
+            }
+            .main {
+                display: inline-block;
+            }
+            .firstSubclass {
+                margin: 5px;
+                padding: 7px;
+                border: red solid 5px;
+            }
+            .secondSubclass {
+                width: 80px;
+                margin: 0 auto;
+            }
+            #totalCost {
+                background-color: beige;
+                color: firebrick;
+            }
+            td {
+                border: solid black 3px;
+            }
+        </style>
+		<script>
+            var totalCost = document.getElementById("totalCost");
+            var button1 = document.getElementsByClassName("button1");
+            var button2 = document.getElementsByClassName("button2");
+            var myTable = document.getElementById("myTable");
+            var stuffFortheTable = [];
+            
+            for(var i=0; i<button1.length; i++) {
+                button1[i].onclick = function() {
+                    this.nextElementSibling.innerHTML++;
+                    var thisPrice = this.parentNode.previousElementSibling.getElementsByTagName("span")[0];
+                    totalCost.innerHTML = (parseFloat(totalCost.innerHTML)+parseFloat(thisPrice.innerHTML)).toFixed(2);
+                    console.log(checkedElements(stuffFortheTable, this.parentNode.previousElementSibling.getElementsByTagName("h5")[0].innerHTML));
+                    var myStr;
+                    if((myStr=checkedElements(stuffFortheTable, this.parentNode.previousElementSibling.getElementsByTagName("h5")[0].innerHTML))==-1) {
+                        stuffFortheTable.push([this.parentNode.previousElementSibling.getElementsByTagName("h5")[0].innerHTML,this.nextElementSibling.innerHTML, thisPrice.innerHTML]);
+                    } else {
+                        stuffFortheTable[myStr][1]=this.nextElementSibling.innerHTML;
+                    }
+                    if(myTable.innerHTML!=="") {
+                        totalCost.click();
+                    }
+                }
+            }
+            
+            for(var i=0; i<button2.length; i++) {
+                button2[i].onclick = function() {
+                    if(this.previousElementSibling.innerHTML==0) {
+                        return false;
+                    }
+                    this.previousElementSibling.innerHTML--;
+                    var thisPrice = this.parentNode.previousElementSibling.getElementsByTagName("span")[0];
+                    totalCost.innerHTML = (parseFloat(totalCost.innerHTML)-parseFloat(thisPrice.innerHTML)).toFixed(2);
+                    var myStr;
+                    if((myStr=checkedElements(stuffFortheTable, this.parentNode.previousElementSibling.getElementsByTagName("h5")[0].innerHTML))>-1 && this.previousElementSibling.innerHTML==0) {
+                        stuffFortheTable.splice(myStr,1);
+                    } else {
+                        stuffFortheTable[myStr][1]=this.previousElementSibling.innerHTML;
+                    }
+                    if(myTable.innerHTML!=="") {
+                        totalCost.click();
+                    }
+                }
+            }
+            totalCost.onclick = function() {
+                var sum = 0;
+                myTable.innerHTML = "";
+                var newTable = document.createElement("table");
+                myTable.appendChild(newTable);
+                for(var i=0; i<stuffFortheTable.length; i++) {
+                    var myTr = document.createElement("tr");
+                    newTable.appendChild(myTr);
+                    sum = (parseFloat(sum) + parseFloat(stuffFortheTable[i][2]) * parseFloat(stuffFortheTable[i][1])).toFixed(2);
+                    for(var j=0; j<stuffFortheTable[i].length; j++) {
+                        var myTd = document.createElement("td");
+                        myTr.appendChild(myTd);
+                        myTd.innerHTML = stuffFortheTable[i][j];
+                    }
+                }
+//                var myFooter = document.createElement("tfooter");   
+//                newTable.appendChild(myFooter);
+                    var footerRow = document.createElement("tr");
+                    newTable.appendChild(footerRow);
+                    var totalColumn = document.createElement("td");
+                    footerRow.appendChild(totalColumn);
+                    totalColumn.innerHTML = "Total";
+                    var sumColumn = document.createElement("td");
+                    footerRow.appendChild(sumColumn);
+                    sumColumn.innerHTML = sum;
+                    sumColumn.setAttribute("colspan", "2");
+            }
+            function checkedElements(arr, el) {
+                for(var i=0; i<arr.length; i++) {
+                    if(arr[i].indexOf(el)!==-1) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+        </script>
+	</body>
+</html>
