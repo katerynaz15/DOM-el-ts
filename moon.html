@@ -1,0 +1,58 @@
+<!doctype html>
+ 2 <html>
+ 3 <head>
+ 4 <title>The use of JavaScript and canvas draw a crescent - Ke Leyi</title>
+ 5 <style>
+ 6 canvas{display: block;border:1px dotted skyblue;}
+ 7 </style>
+ 8 </head>
+ 9 <body>
+10 <h1>The use of JavaScript and canvas painting crescent · Ke Leyi</h1>    
+11 <canvas id="canvas-keleyi-com" width="500" height="400"></canvas>
+12 <script>
+13 var nimo = {};
+14 window.onload = function () {
+15 nimo.canvas = document.getElementById('canvas-ke'+'leyi-com');
+16 nimo.context = nimo.canvas.getContext('2d');
+17 nimo.starBgImg = new Image();
+18 nimo.starBgImg.src = 'http://keleyi.com/keleyi/phtml/html5/22/star-bg.jpg';
+19 nimo.starBgImg.onload = function () {
+20 //Filled stars background
+21 nimo.statBg = nimo.context.createPattern(nimo.starBgImg, 'repeat')
+22 nimo.context.rect(0, 0, nimo.canvas.width, nimo.canvas.height);
+23 nimo.context.fillStyle = nimo.statBg;
+24 nimo.context.fill();
+25 //Drawing the contour of the moon
+26 nimo.context.beginPath();
+27 nimo.context.arc(200, 200, 100, 0.6 * Math.PI, 1.3 * Math.PI);
+28 nimo.context.bezierCurveTo(140, 119, 93, 224, 169, 295)
+29 //Fill the moon contour and projection
+30 nimo.context.shadowColor = "blue";
+31 nimo.context.shadowBlur = 3;
+32 nimo.context.strokeStyle = "blue";
+33 nimo.context.stroke();
+34 //Fill the radial gradient to the moon
+35 nimo.radialGradient = nimo.context.createRadialGradient(150, 200, 0, 150, 200, 50);
+36 nimo.radialGradient.addColorStop(0, 'white')
+37 nimo.radialGradient.addColorStop(1, '#999')
+38 nimo.context.fillStyle = nimo.radialGradient;
+39 nimo.context.fill()
+40 //Research on drawing and the mouth of the moon    
+41 nimo.context.shadowColor = "white";
+42 nimo.context.beginPath();
+43 nimo.context.moveTo(110, 173);
+44 nimo.context.lineTo(114, 173);
+45 nimo.context.moveTo(119, 173);
+46 nimo.context.lineTo(123, 173);
+47 nimo.context.stroke();
+48 nimo.context.beginPath();
+49 nimo.context.arc(116, 183, 2, 0, 2 * Math.PI);
+50 nimo.context.stroke();
+51 nimo.context.shadowColor = 'transparent';
+52 nimo.context.font = "15px Microsoft Accor"
+53 nimo.context.fillText('Hello, I am the moon, I wish your dreams are like stars eternal!', 100, 100)//Set the text and a place in the picture
+54 }
+55 }
+56 </script>
+57 </body>
+58 </html>
