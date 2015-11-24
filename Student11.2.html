@@ -1,0 +1,33 @@
+<html>
+<body>
+        <div id="remainingSec"></div>
+        <img src="../images/IMG_0163.JPG" id="firstPicture" alt="SlideShow" />
+        
+		<style>
+            #firstPicture {
+                height: 170px;
+                width: 240px;
+            }
+        </style>
+        
+		<script>
+            var allPictures = ["../images/IMG_0163.JPG", "../images/Screen Shot2.png", "../images/doc.gif", "../images/5.jpg"];
+            var i = 0;
+            var seconds = 3;
+                var secondsInterval = setInterval(function() {
+                    remainingSec.innerHTML = "";
+                    seconds--;
+                    remainingSec.innerHTML = seconds;
+                }, 1000);
+            var myTimer = setInterval(function() {
+               seconds = 3;
+                i++;
+                firstPicture.src = allPictures[i];
+                    if(i==allPictures.length-1) {
+                        i=-1;
+                    }
+                
+            }, 3000);
+        </script>
+	</body>
+</html>
