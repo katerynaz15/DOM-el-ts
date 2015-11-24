@@ -1,0 +1,41 @@
+<html>
+	<body>
+        <ul id="myUl"></ul>
+        <input type="color" id="backgroundColor" />
+        <input type="color" id="textColor" />
+        <input type="button" id="myButton" value="Submit!" />
+		<style></style>
+		<script>
+            window.onload = function() {
+                var newUl = document.getElementById("myUl");
+                var backColor = document.getElementById("backgroundColor");
+                var textColor = document.getElementById("textColor");
+                var myButton = document.getElementById("myButton");
+                
+                while(true) {
+                    var promptMeaning = prompt("Would you like to write something down?");
+                    if(promptMeaning=="" || promptMeaning==null) {
+                        break;
+                    }
+                    var myLi = document.createElement("li");
+                    newUl.appendChild(myLi);
+                    myLi.innerHTML = promptMeaning;
+                }
+                
+            myButton.onclick = function() {
+                var setBackColor = backColor.value;
+                var setTextColor = textColor.value;
+                var newLi = newUl.getElementsByTagName("li");
+                for(var i=0; i<newLi.length; i++) {
+                    newLi[i].onclick = function() {
+                        this.style.backgroundColor = setBackColor;
+                        this.style.color = setTextColor;
+                    }
+                }
+            }
+            }
+             
+            
+        </script>
+	</body>
+</html>
