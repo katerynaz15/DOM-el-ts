@@ -1,0 +1,30 @@
+[{
+    "id": "1",
+    "Name" : "Vanity Fair",
+    "Author" : "W. Theckery",
+    "Date" : "1890"
+},
+{
+    "id": "2",
+    "Name" : "Robinson Crusoe",
+    "Author" : "Daniel Dafoe",
+    "Date" : "1760"
+}, 
+{
+    "id": "3",
+    "Name" : "Uncle Sam's Cabin",
+    "Author" : "G. B. Stowe",
+    "Date" : "1820"
+}, 
+{
+    "id": "4",
+    "Name" : "Harry Potter",
+    "Author" : "J. Roling",
+    "Date" : "1997"
+},
+{
+    "id": "5",
+    "Name" : "Kapital",
+    "Author" : "K. Marx",
+    "Date" : "1870"
+}]
