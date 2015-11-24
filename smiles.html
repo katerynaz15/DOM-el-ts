@@ -1,0 +1,24 @@
+<html>
+	<body>
+        <p>The French Bulldog is a small breed :) of domestic dog. "Frenchies" were the result in the 1800s of a cross between bulldog ;-) ancestors imported from England ;) and local ratters in Paris (France). :( In the UK, they moved up to become the fourth ;) most popular registered dog by 2014. In the USA, French bulldogs moved up to be the ;-) ninth most popular :) AKC registered dog breed by 2014.</p>
+		<style>
+            img {
+                width: 20px;
+                height: 20px;
+            };
+        </style>
+		<script>
+            var changedSmiley = setTimeout(function() {
+                var myP = document.getElementsByTagName("p")[0];
+              //  var regExec = /:\)/gi;
+                var allSmileys = [":\\)", ";\\)", ";-\\)", ";\\("];
+                var allPics = ['<img src="../images/238.jpg">', '<img src="../images/Happy-face.png">', '<img src="../images/happy.jpg">', '<img src="../images/sad.jpg">']
+                for(var i=0; i<allSmileys.length; i++) {
+                var regExec = new RegExp(allSmileys[i],"gi")
+                var newSmiley = myP.innerHTML.replace(regExec, allPics[i]);
+                myP.innerHTML = newSmiley;
+                }
+            }, 1000) 
+        </script>
+	</body>
+</html>
