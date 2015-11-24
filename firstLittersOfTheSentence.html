@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf8">
+    </head>
+	<body>
+        <p id="myText">
+            веб-сайт: cppstudio.com, программирование на С++ </br>
+            раздел помогите написать программу </br>
+            форум программистов на С++ </br>
+            исходный код программ на С++ </br>
+            руководство для начинающих программистов на С++</p>
+        <input type="button" id="mybutton" value="New Sentence" />
+        
+		<style></style>
+		<script>
+            var myP = document.getElementById("myText");  
+            var myButton = document.getElementById("mybutton");
+            
+            myButton.onclick = function() {
+                var myP1 = myP.innerHTML.split("<br>");
+                console.log(myP1);
+                var newWord = "";
+                for(var i=0; i<myP1.length; i++) {
+                    var separateWords = myP1[i].split(" ");
+                    for(var j=0; j<separateWords.length; j++) {
+                        if(typeof(separateWords[j][0])=="undefined") {
+                            continue;
+                        } else {
+                            newWord += separateWords[j][0];
+                            //console.log(separateWords[j][0]);
+                        }
+                    }
+                    newWord += " ";
+                }
+                var divBlock = document.createElement("div");
+                document.body.appendChild(divBlock);
+                divBlock.innerHTML = newWord;
+            }
+        </script>
+	</body>
+</html>
