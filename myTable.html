@@ -1,0 +1,103 @@
+<html>
+	<body>
+        <table>
+            <tbody></tbody>
+            <thead>
+                <tr>
+                    <th class="true">Name</th>
+                    <th class="true">Last Name</th>
+                    <th class="true" data-type="number">Age</th>
+                    <th class="true">Country</th>
+                </tr>
+            </thead>
+        </table>
+        <input type="button" id="myButton" value="Back to Original!">
+		<style>
+            th:hover {
+                color: orangered;
+                background-color: beige;
+            }
+        </style>
+		<script>
+            window.onload = function() {
+                var myButton = document.getElementById("myButton");
+                var tableContents = [{
+                                    name: "Masha",
+                                    lastName: "Smith",
+                                    age: 12,
+                                    country: "UK" }, 
+                                {   name: "James", 
+                                    lastName: "Bond",
+                                    age: 35,
+                                    country: "UK" },
+                                {   name: "Andy",
+                                    lastName: "List",
+                                    age: 29,
+                                    country: "USA" },
+                                {   name: "Tanya",
+                                    lastName: "Volotovska",
+                                    age: 20,
+                                    country: "Ukraine" }, 
+                                {   name: "TAnya1",
+                                    lastName: "Volotovska",
+                                    age: 20,
+                                    country: "Ukraine" }]
+                var myTbody = document.getElementsByTagName("tbody")[0];
+                for(var i=0; i<tableContents.length; i++) {
+                    var myTr = document.createElement("tr");
+                    myTbody.appendChild(myTr);
+                    for(var j in tableContents[i]) {
+                        var myTd = document.createElement("td");
+                        myTr.appendChild(myTd);
+                        myTd.innerHTML = tableContents[i][j];
+                    }
+                }
+                var myTh = document.getElementsByTagName("th");
+                for(var i=0; i<myTh.length; i++) {
+                    myTh[i].onclick = function(event) {
+                            var headingIndex = event.target.cellIndex;
+                            var rowsArray = [].slice.call(myTbody.rows);
+    //                        console.log(rowsArray);
+    //                        console.log([].slice);
+    //                        console.log(this.getAttribute("data-type"));
+                            var compare;
+                            switch(this.getAttribute("data-type")) {
+//                                    case null: compare = function(rowA, rowB) {
+//                                            return rowA.cells[headingIndex].innerHTML > rowB.cells[headingIndex].innerHTML ? 1 : -1;
+//                                        }; break;
+                                    case null: compare = function(rowA, rowB) {   
+                                        return rowA.cells[headingIndex].innerHTML.toLowerCase() > rowB.cells[headingIndex].innerHTML.toLowerCase() ? 1 : -1; 
+                                        }; break;
+                                    case "number": compare = function(rowA, rowB) {
+                                            return rowA.cells[headingIndex].innerHTML - rowB.cells[headingIndex].innerHTML;
+                                        }; break;
+                            }
+                            rowsArray.sort(compare);
+                            if(this.getAttribute("class")=="true") {
+                                this.setAttribute("class", "false");
+                            } else {
+                                rowsArray.reverse();
+                                this.setAttribute("class", "true");
+                            }
+                            myTbody.innerHTML = "";
+                            for(var i=0; i<rowsArray.length; i++) {
+                                myTbody.appendChild(rowsArray[i]);
+                            }   
+                    }
+                }
+                myButton.onclick = function() {
+                    myTbody.innerHTML = "";
+                        for(var i=0; i<tableContents.length; i++) {
+                        var myTr = document.createElement("tr");
+                        myTbody.appendChild(myTr);
+                            for(var j in tableContents[i]) {
+                                var myTd = document.createElement("td");
+                                myTr.appendChild(myTd);
+                            myTd.innerHTML = tableContents[i][j];
+                        }
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>
