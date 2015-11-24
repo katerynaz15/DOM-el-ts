@@ -1,0 +1,31 @@
+<html>
+	<body>
+        <style>
+            img {
+                height: 50px;
+                width: 50px;
+            }
+        </style>
+        
+        <div id="main">
+            <a href="1.doc">doc</a>
+            <a href="2.pdf">pdf</a>
+            <a href="3.xls">xls</a>
+        </div>
+        <input type="button" id="myButton" value="submit" />
+        
+		<script>
+            document.getElementById("myButton").onclick = function() {
+                var myMain = document.getElementById("main");
+                var myA = myMain.getElementsByTagName("a");
+                for(var i=0; i<myA.length; i++) {
+                    var selectedA = myA[i].href.split(".").pop();
+                
+                    var myImage = document.createElement("img");
+                    myMain.insertBefore(myImage, myA[i]);
+                    myImage.src="../images/"+selectedA+".gif" 
+                }
+            }
+        </script>
+	</body>
+</html>
