@@ -1,0 +1,30 @@
+<html>
+	<body>
+        <canvas id="newCanvas" width="500px" height="400px"></canvas>
+        <style>
+            canvas{
+                border: green 3px solid;
+            }
+        </style>
+        <script>
+            var newCanvas = document.getElementById("newCanvas");
+            var ctx = newCanvas.getContext("2d");
+            ctx.fillStyle = "aqua";
+            ctx.fillRect(70, 130, 200, 150);
+//            ctx.beginPath();
+            ctx.fillStyle = "blue";
+            ctx.moveTo(70, 130);
+            ctx.lineTo(170, 40);
+            ctx.lineTo(270, 130);
+            ctx.fill();
+            ctx.fillStyle = "black";
+            ctx.fillRect(225, 220, 40, 60);
+            ctx.fillStyle = "red";
+            ctx.fillRect(100, 160, 30, 30);
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(190, 160, 30, 30);
+            ctx.fillStyle = "orange";
+            ctx.fillRect(150, 220, 30, 30);
+        </script>
+	</body>
+</html>
