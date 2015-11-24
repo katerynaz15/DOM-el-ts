@@ -1,0 +1,17 @@
+<html>
+	<body>
+        
+		<style>
+           
+        </style>
+		<script>
+            function reverseString(str) {
+              var newStr = str.split(" ");
+              var newArr = newStr.reverse();
+              var myStr = newArr.join(" ");
+              return myStr;
+            }
+            reverseString("hello");
+        </script>
+	</body>
+<html>
