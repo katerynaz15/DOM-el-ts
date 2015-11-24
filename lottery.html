@@ -1,0 +1,193 @@
+<html>
+	<body>
+        <div id="lottery1">
+            <h3>$<span>50</span></h3>
+            <input type="button" id="newButton" value="Buy!" />
+            <input type="button" id="myButton" value="Let's Start!" />
+            <div>
+                <p>Winning Numbers: </p>
+            </div>
+        </div>
+        <div id="scratchLottery">
+            <h3>$<span>50</span></h3>
+            <input type="button" id="newButton1" value="Buy!" />
+            <input type="button" id="myButton1" value="Let's Start!" />
+            <input type="button" id="myButton2" value="Check Now!" />
+            <div>
+                <p>Winning Combination: </p>
+            </div>
+        </div>
+		<style>
+            table {
+                margin-bottom: 40px;
+            }
+            td {
+                border: solid blue 3px;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+            }
+            .checked {
+                background-color: red;
+            }
+            body {
+                width: 100%;
+                float: left;
+            }
+            #lottery1 {
+                width: 40%;
+                display: inline-block;
+            }
+            #scratchLottery {
+                width: 40%;
+                display: inline-block;
+            }
+        </style>
+		<script>
+            var myMoney = document.getElementsByTagName("span");
+            var myButton = document.getElementById("newButton");
+            var newButton = document.getElementById("myButton");
+            var myDiv = document.getElementsByTagName("div")[0];
+            var myDiv1 = document.getElementById("scratchLottery");
+            var myButton1 = document.getElementById("newButton1");
+            var newButton1 = document.getElementById("myButton1");
+            var checkButton = document.getElementById("myButton2");
+            
+            myButton.onclick = function() {
+                if(myMoney[0].innerHTML-5<0) {
+                    alert("You do not have enough money, please come back later!");
+                    return false;
+                } 
+                myMoney[0].innerHTML-=5;
+                
+                var myTable = document.createElement("table");
+                myDiv.appendChild(myTable);
+                var count = 1;
+                for(var i=0; i<5; i++) {
+                    var myTr = document.createElement("tr");
+                    myTable.appendChild(myTr);
+                    for(var j=0; j<10; j++) {
+                        var myTd = document.createElement("td");
+                        myTr.appendChild(myTd);
+                        myTd.innerHTML = count++;
+                    
+                        myTd.onclick = function() {
+                            if(myTable.getElementsByClassName("checked").length>=6 && !this.hasAttribute("class")) {
+                            return false;
+                            } if (this.hasAttribute("class")) {
+                            this.removeAttribute("class");
+                            } else {
+                            this.setAttribute("class", "checked");
+                            }
+                        }
+                    }
+                }
+            }
+            
+            newButton.onclick = function() {
+                var myArray = [0, 2, 4, 6, 8, 10, 50];
+                var allTables = document.getElementsByTagName("table");
+                    for(var k=0; k<allTables.length; k++) {
+                        var classNumber = allTables[k].getElementsByClassName("checked");
+                    if(classNumber.length<6) {
+                        alert("Please enter " + (6-classNumber.length)+ " more numbers!");
+                        return false;
+                    }
+                    if(k == 0) {
+                        var computerNumbers = [];
+                        while(computerNumbers.length<6) {
+                            var checkedNumbers = Math.floor(Math.random()*49+1);
+                            if(computerNumbers.indexOf(checkedNumbers)==-1) {
+                                computerNumbers.push(checkedNumbers); 
+                            }
+                        }
+                        myDiv.innerHTML += computerNumbers.join(", ");
+                    }
+                
+                var myWinningNumbers = 0;
+                
+                for(var i=0; i<classNumber.length; i++) {
+//                    if(computerNumbers.indexOf(classNumber[i].innerHTML)!==-1) {
+//                        myWinningNumbers++;
+//                    }
+                    for(var j=0; j<computerNumbers.length; j++) {
+                        if(computerNumbers[j]==classNumber[i].innerHTML) {
+                            myWinningNumbers++;
+                        }
+                    }
+                }
+                        myMoney[0].innerHTML = parseInt(myMoney[0].innerHTML)+myArray[myWinningNumbers];
+                        alert("Ticket # " + (k+1) + " won " +myWinningNumbers+" numbers.");
+                    }
+                var i=0;
+                while(allTables.length>0) {
+                    document.body.removeChild(allTables[i]);
+                }
+                myDiv.innerHTML = "<p>Winning numbers: </p>"
+            }
+            
+            myButton1.onclick = function() {
+                if(myMoney[1].innerHTML-10<0) {
+                    alert("You do not have enough money, please come back later!");
+                    return false;
+                } 
+                myMoney[1].innerHTML-=10;
+                
+                var myTable = document.createElement("table");
+                myDiv1.appendChild(myTable);
+                    numArray = [];
+                for(var i=0; i<5; i++) {
+                    var myTr = document.createElement("tr");
+                    numArray[i] = [];
+                    myTable.appendChild(myTr);
+                    for(var j=0; j<5; j++) {
+                        var myTd = document.createElement("td");
+                        myTr.appendChild(myTd);
+                        myTd.style.background = "url('../images/238.jpg')";
+                        myTd.style.backgroundSize = "cover";
+                        numArray[i][j] = Math.floor(Math.random()*199+1);
+                        
+                        myTd.onclick = function() {
+                            this.style.background = "white";
+//                            console.log(this.parentNode.rowIndex, this.cellIndex);
+//                            this.innerHTML = numArray[this.parentNode.rowIndex][this.cellIndex];  for Firefox
+//                            this.innerHTML = numArray[this.parentNode.sectionRowIndex][this.cellIndex]; for Chrome
+                            var row = ((this.parentNode.rowIndex == -1) ? this.parentNode.sectionRowIndex: this.parentNode.rowIndex);
+                            this.innerHTML = numArray[row][this.cellIndex];
+//                            console.log(row);
+                        }
+                    }
+                }
+            }
+            
+            newButton1.onclick = function() {
+                var winNum = document.createElement("h2");
+                myDiv1.appendChild(winNum);
+                    myArray = [];
+                for(var i=0; i<=6; i++) {
+                    myArray.push(Math.floor(Math.random()*199+1));
+                }
+                winNum.innerHTML = myArray.join(", ");
+            }
+            
+            checkButton.onclick = function() {
+                if(this.hasAttribute("class")) {
+                    return false;
+                }
+                this.setAttribute("class", "alreadyChecked");
+                var count = 0;
+                for(var i=0; i<myArray.length; i++) {
+                    for(var k=0; k<numArray.length; k++) {
+                        for(var j=0; j<numArray[k].length; j++) {
+                            if(myArray[i]==numArray[k][j]) {
+                                myMoney[1].innerHTML = parseInt(myMoney[1].innerHTML)+2;
+                                count++;
+                            }
+                        }
+                    }
+                }
+                alert("You have won " + count + " numbers. Congratulations!");
+            }
+        </script>
+	</body>
+</html>
