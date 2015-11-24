@@ -1,0 +1,40 @@
+<html>
+	<body>
+		<style> 
+            div {
+                margin: 10px;
+            }
+        </style>
+        
+        <input type="number" id="numberofdiv" placeholder="Enter quantity" />
+        <input type="number" id="divheight" placeholder="Enter the height" />
+        <input type="color" id="startingcolor" />
+        <input type="color" id="endingcolor" />
+        <input type="button" id="myButton" value="Submit!" />
+        
+		<script>
+            myButton.onclick = function() {
+                var red1 = parseInt(startingcolor.value.substr(1, 2), 16);
+                var green1 = parseInt(startingcolor.value.substr(3, 2), 16);
+                var blue1 = parseInt(startingcolor.value.substr(5, 2), 16);
+                
+                var red2 = parseInt(endingcolor.value.substr(1, 2), 16);
+                var green2 = parseInt(endingcolor.value.substr(3, 2), 16);
+                var blue2 = parseInt(endingcolor.value.substr(5, 2), 16);
+                
+                var redDif = Math.floor((red2-red1)/parseInt(numberofdiv.value));
+                var greenDif = Math.floor((green2-green1)/parseInt(numberofdiv.value));
+                var blueDif = Math.floor((blue2-blue1)/parseInt(numberofdiv.value));
+                
+                
+                for(var i=0; i<parseInt(numberofdiv.value); i++) {
+                    var myDiv = document.createElement("div");
+                    document.body.appendChild(myDiv);
+                    myDiv.style.height = divheight.value+"px";
+                    myDiv.style.width = divheight.value+"px";
+                    myDiv.style.backgroundColor = "rgb"+"("+(red1+i*redDif)+","+(green1+i*greenDif)+","+(blue1+i*blueDif)+")";
+                }
+            }  
+        </script>
+	</body>
+</html>
