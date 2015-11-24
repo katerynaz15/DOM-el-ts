@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<body>
+        <table></table>
+		<style></style>
+        
+		<script>
+            var xmlhttp = new XMLHttpRequest;
+            var url = "myLibrary.json";
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            
+            xmlhttp.onload = function() {
+                var objectValue = JSON.parse(xmlhttp.responseText);
+                console.log(objectValue);
+                var myTable = document.getElementsByTagName("table")[0];
+                var myHead = document.createElement("thead");
+                myTable.appendChild(myHead);
+                var newTr = document.createElement("tr");
+                myHead.appendChild(newTr);
+                            
+                    for(var i=0; i<objectValue.length; i++) {
+                        var myTr = document.createElement("tr");
+                        myTable.appendChild(myTr);
+                        console.log(objectValue[i], objectValue[i].length);
+                        
+                        for(var key in objectValue[i]) {
+                            console.log(key);
+                            if(i==0) {
+                                var myTh = document.createElement("th");
+                                newTr.appendChild(myTh);
+                                myTh.innerHTML = key;
+                            }
+                            var myTd = document.createElement("td");
+                            myTr.appendChild(myTd);
+                            myTd.innerHTML = objectValue[i][key];
+                        }
+                    }
+            }
+        </script>
+	</body>
+</html>
