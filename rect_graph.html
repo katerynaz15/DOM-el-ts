@@ -1,0 +1,27 @@
+<html>
+	<body>
+        <canvas id="newCanvas" width="500px" height="200px"> 
+        </canvas>
+        <style>
+            canvas{
+                border: green 3px solid;
+            }
+        </style>
+        <script>
+            var myData = [70, 100, 500, 30, 5];
+            var myColor = "orange";
+            var myCanvas = document.getElementById("newCanvas");
+            var ctx = myCanvas.getContext("2d");
+            var sum = 0;
+            for(var i=0; i<myData.length; i++) {
+               sum += myData[i];
+            }
+            var myStep = 5; //stands for "x"
+            for(var i=0; i<myData.length; i++) {
+                ctx.fillStyle = myColor;
+                ctx.fillRect(myStep, 180, 40, -200*(myData[i]/sum));
+                myStep += 40+5;
+            }
+        </script>
+	</body>
+</html>
