@@ -1,0 +1,47 @@
+<html>
+	<body>
+		<style>
+            body {
+                position: relative;
+                background-color: rgb(4, 124, 44);
+            } 
+        </style>
+		<script>
+            window.onload = function() {
+                var setColor;
+                document.body.onclick = function(event) {
+                    console.log(event);
+                    var myDiv = document.createElement("div");
+                    document.body.appendChild(myDiv);
+                    myDiv.style.width = "100px";
+                    myDiv.style.height = "100px";
+                    myDiv.style.position = "absolute";
+                    myDiv.style.top = event.clientY+"px";
+                    myDiv.style.left = event.clientX+"px";
+                    var newColor = function() {
+                        var red = Math.floor(Math.random()*255);
+                        var green = Math.floor(Math.random()*255);
+                        var blue = Math.floor(Math.random()*255);
+                        return "rgb("+red+","+green+","+blue+")";
+                    }
+                    myDiv.style.backgroundColor = newColor();
+                    myDiv.style.border = "solid 3px black";
+                    
+                    myDiv.onmouseover = function() {
+                        setColor = myDiv.style.backgroundColor;
+                        myDiv.style.backgroundColor = document.body.style.backgroundColor;
+                    }
+                    
+                    myDiv.onmouseout = function() {
+                        myDiv.style.backgroundColor = setColor;
+                    }
+                    
+                    myDiv.oncontextmenu = function() {
+                        document.body.removeChild(this);
+                        return false;
+                    }
+                }
+            }
+        </script>
+	</body>
+</html>
